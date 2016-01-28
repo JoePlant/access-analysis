@@ -2,6 +2,9 @@
 Thumbs.db
 ehthumbs.db
 
+# Output directory
+Output
+
 # Folder config file
 Desktop.ini
 
