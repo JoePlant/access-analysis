@@ -1,0 +1,629 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+  <?mso-application progid="Excel.Sheet"?><Workbook xmlns:fo="http://www.w3.org/1999/XSL/Format" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:fn="http://www.w3.org/2005/xpath-functions" xmlns:xdt="http://www.w3.org/2005/xpath-datatypes" xmlns="urn:schemas-microsoft-com:office:spreadsheet" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet" xmlns:html="http://www.w3.org/TR/REC-html40"><Styles><Style ss:ID="header" ss:Name="Header"><Font ss:FontName="Arial" ss:Bold="1" /></Style><Style ss:ID="text" ss:Name="Normal"><Font ss:FontName="Arial" /></Style><Style ss:ID="value" ss:Parent="text" ss:Name="Value"><Font ss:Bold="1" /></Style><Style ss:ID="hyperlink" ss:Parent="text" ss:Name="Hyperlink"><Font ss:Underline="Single" ss:Color="#0000FF" /></Style><Style ss:ID="inherited-value" ss:Parent="text" ss:Name="Inherited Value"><Font ss:Italic="1" /></Style><Style ss:ID="default-value" ss:Parent="text" ss:Name="Default Value"><Font ss:Italic="1" ss:Color="Silver" /></Style><Style ss:ID="no-value" ss:Parent="text" ss:Name="No Value"><Interior ss:Pattern="Solid" ss:Color="Silver" /></Style><Style ss:ID="merge-down" ss:Parent="text" ss:Name="Merged Down"><Alignment ss:Horizontal="Left" ss:Vertical="Center" /></Style></Styles><Worksheet ss:Name="Forms"><Table><Row><Cell ss:StyleID="header"><Data ss:Type="String">Form</Data></Cell></Row><Row><Cell ss:StyleID="text"><Data ss:Type="String">Active Orders Subform for Home</Data></Cell></Row><Row><Cell ss:StyleID="text"><Data ss:Type="String">Home</Data></Cell></Row><Row><Cell ss:StyleID="text"><Data ss:Type="String">Inventory to reorder Subform for Home</Data></Cell></Row><Row><Cell ss:StyleID="text"><Data ss:Type="String">Login Dialog</Data></Cell></Row><Row><Cell ss:StyleID="text"><Data ss:Type="String">Sales Reports Dialog</Data></Cell></Row><Row><Cell ss:StyleID="text"><Data ss:Type="String">Startup Screen</Data></Cell></Row><Row><Cell ss:StyleID="text"><Data ss:Type="String">Product Details</Data></Cell></Row><Row><Cell ss:StyleID="text"><Data ss:Type="String">Product Transactions Subform for Product Details</Data></Cell></Row><Row><Cell ss:StyleID="text"><Data ss:Type="String">Supplier List</Data></Cell></Row><Row><Cell ss:StyleID="text"><Data ss:Type="String">Purchase Order List</Data></Cell></Row><Row><Cell ss:StyleID="text"><Data ss:Type="String">Customer Details</Data></Cell></Row><Row><Cell ss:StyleID="text"><Data ss:Type="String">Order Details</Data></Cell></Row><Row><Cell ss:StyleID="text"><Data ss:Type="String">Order Subform for Order Details</Data></Cell></Row><Row><Cell ss:StyleID="text"><Data ss:Type="String">Purchase Order Details</Data></Cell></Row><Row><Cell ss:StyleID="text"><Data ss:Type="String">Purchases Subform for Purchase Order Details</Data></Cell></Row><Row><Cell ss:StyleID="text"><Data ss:Type="String">Receiving Subform for Purchase Order Details</Data></Cell></Row><Row><Cell ss:StyleID="text"><Data ss:Type="String">Shipper Details</Data></Cell></Row><Row><Cell ss:StyleID="text"><Data ss:Type="String">Customer List</Data></Cell></Row><Row><Cell ss:StyleID="text"><Data ss:Type="String">Product Sales by Category Chart</Data></Cell></Row><Row><Cell ss:StyleID="text"><Data ss:Type="String">Shipper List</Data></Cell></Row><Row><Cell ss:StyleID="text"><Data ss:Type="String">Inventory List</Data></Cell></Row><Row><Cell ss:StyleID="text"><Data ss:Type="String">Order List</Data></Cell></Row><Row><Cell ss:StyleID="text"><Data ss:Type="String">Product Category Sales by Month</Data></Cell></Row><Row><Cell ss:StyleID="text"><Data ss:Type="String">Sales Analysis Form</Data></Cell></Row><Row><Cell ss:StyleID="text"><Data ss:Type="String">Customer Orders Subform</Data></Cell></Row><Row><Cell ss:StyleID="text"><Data ss:Type="String">Employee Orders Subform</Data></Cell></Row><Row><Cell ss:StyleID="text"><Data ss:Type="String">Supplier Products Subform</Data></Cell></Row><Row><Cell ss:StyleID="text"><Data ss:Type="String">Supplier Purchases Subform</Data></Cell></Row><Row><Cell ss:StyleID="text"><Data ss:Type="String">Employee Details</Data></Cell></Row><Row><Cell ss:StyleID="text"><Data ss:Type="String">Employee List</Data></Cell></Row><Row><Cell ss:StyleID="text"><Data ss:Type="String">Sales Analysis Subform for Home Chart</Data></Cell></Row><Row><Cell ss:StyleID="text"><Data ss:Type="String">Supplier Details</Data></Cell></Row><Row><Cell ss:StyleID="text"><Data ss:Type="String">Product Sales by Total Revenue Chart</Data></Cell></Row><Row><Cell ss:StyleID="text"><Data ss:Type="String">Product Sales Qty by Employee Chart</Data></Cell></Row></Table></Worksheet></Workbook>
+  
+    
+      
+      
+      
+        Customers Extended
+        
+        
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+        
+      
+      
+      
+    
+    
+      
+      
+      
+        Suppliers Extended
+        
+        
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+        
+      
+      
+      
+    
+    
+      
+      
+      
+        Employees Extended
+        
+        
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+        
+      
+      
+      
+    
+    
+      
+        [Event Procedure]
+      
+      
+        Sales Analysis
+        
+        
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+        
+      
+      
+        
+
+
+Sub PrintReports(ReportView As AcView)
+    ' This procedure used in Preview_Click and Print_Click Sub procedures.
+    ' Preview or print report selected in the ReportToPrint option group.
+    ' Then close the Print Sales Reports Dialog form.
+    Dim strReportName As String
+    Dim strReportFilter As String
+    Dim lOrderCount As Long
+
+    ' Determine report filtering
+    If Nz(Me.lstReportFilter) &lt;&gt; "" Then
+        strReportFilter = "([SalesGroupingField] = """ &amp; Me.lstReportFilter &amp; """)"
+    End If
+    
+    ' Determine reporting time frame
+    Select Case Me.lstSalesPeriod
+    Case ByYear
+        strReportName = "Yearly Sales Report"
+        lOrderCount = DCountWrapper("*", "Sales Analysis", "[Year]=" &amp; Me.cbYear)
+    Case ByQuarter
+        strReportName = "Quarterly Sales Report"
+        lOrderCount = DCountWrapper("*", "Sales Analysis", "[Year]=" &amp; Me.cbYear &amp; " AND [Quarter]=" &amp; Me.cbQuarter)
+    Case ByMonth
+        strReportName = "Monthly Sales Report"
+        lOrderCount = DCountWrapper("*", "Sales Analysis", "[Year]=" &amp; Me.cbYear &amp; " AND [Month]=" &amp; Me.cbMonth)
+    End Select
+        
+    If lOrderCount &gt; 0 Then
+        TempVars.Add "Group By", Me.lstSalesReports.Value
+        TempVars.Add "Display", DLookupStringWrapper("[Display]", "Sales Reports", "[Group By]='" &amp; Nz(Me.lstSalesReports) &amp; "'")
+        TempVars.Add "Year", Me.cbYear.Value
+        TempVars.Add "Quarter", Me.cbQuarter.Value
+        TempVars.Add "Month", Me.cbMonth.Value
+        
+        eh.TryToCloseObject
+        DoCmd.OpenReport strReportName, ReportView, , strReportFilter, acWindowNormal
+    Else
+        MsgBoxOKOnly NoSalesInPeriod
+    End If
+End Sub
+    
+      
+    
+    
+      
+        [Event Procedure]
+      
+      
+        Sales Analysis
+        
+        
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+        
+      
+      
+        
+
+
+Sub PrintReports(ReportView As AcView)
+    ' This procedure used in Preview_Click and Print_Click Sub procedures.
+    ' Preview or print report selected in the ReportToPrint option group.
+    ' Then close the Print Sales Reports Dialog form.
+    Dim strReportName As String
+    Dim strReportFilter As String
+    Dim lOrderCount As Long
+
+    ' Determine report filtering
+    If Nz(Me.lstReportFilter) &lt;&gt; "" Then
+        strReportFilter = "([SalesGroupingField] = """ &amp; Me.lstReportFilter &amp; """)"
+    End If
+    
+    ' Determine reporting time frame
+    Select Case Me.lstSalesPeriod
+    Case ByYear
+        strReportName = "Yearly Sales Report"
+        lOrderCount = DCountWrapper("*", "Sales Analysis", "[Year]=" &amp; Me.cbYear)
+    Case ByQuarter
+        strReportName = "Quarterly Sales Report"
+        lOrderCount = DCountWrapper("*", "Sales Analysis", "[Year]=" &amp; Me.cbYear &amp; " AND [Quarter]=" &amp; Me.cbQuarter)
+    Case ByMonth
+        strReportName = "Monthly Sales Report"
+        lOrderCount = DCountWrapper("*", "Sales Analysis", "[Year]=" &amp; Me.cbYear &amp; " AND [Month]=" &amp; Me.cbMonth)
+    End Select
+        
+    If lOrderCount &gt; 0 Then
+        TempVars.Add "Group By", Me.lstSalesReports.Value
+        TempVars.Add "Display", DLookupStringWrapper("[Display]", "Sales Reports", "[Group By]='" &amp; Nz(Me.lstSalesReports) &amp; "'")
+        TempVars.Add "Year", Me.cbYear.Value
+        TempVars.Add "Quarter", Me.cbQuarter.Value
+        TempVars.Add "Month", Me.cbMonth.Value
+        
+        eh.TryToCloseObject
+        DoCmd.OpenReport strReportName, ReportView, , strReportFilter, acWindowNormal
+    Else
+        MsgBoxOKOnly NoSalesInPeriod
+    End If
+End Sub
+    
+      
+    
+    
+      
+      
+      
+        Invoice Data
+        
+        
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+            
+            
+          
+          
+          
+          
+            
+            
+          
+          
+            
+            
+          
+          
+            
+            
+          
+          
+            
+            
+          
+          
+            
+            
+          
+          
+            
+            
+          
+          
+            
+            
+          
+          
+            
+            
+          
+          
+            
+            
+          
+          
+            
+            
+          
+          
+            
+            
+          
+          
+            
+            
+          
+          
+            
+            
+          
+          
+            
+            
+          
+          
+          
+        
+      
+      
+        
+
+
+Function PrintInvoice(OrderID As Long) As Boolean
+    DoCmd.OpenReport "Invoice", acViewPreview, , "[Order ID]=" &amp; OrderID, acDialog
+End Function
+  
+      
+    
+    
+      
+      
+      
+        
+        
+        
+          
+          
+          
+          
+          
+          
+        
+      
+      
+      
+    
+    
+      
+      
+      
+        Top Ten Orders by Sales Amount
+        
+        
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+        
+      
+      
+      
+    
+    
+      
+      
+      
+        Customers Extended
+        
+        
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+        
+      
+      
+      
+    
+    
+      
+      
+      
+        Employees Extended
+        
+        
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+        
+      
+      
+      
+    
+    
+      
+      
+      
+        Suppliers Extended
+        
+        
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+        
+      
+      
+      
+    
+    
+      
+      
+      
+        
+        
+        
+          
+          
+          
+          
+          
+          
+        
+      
+      
+      
+    
+    
+      
+      
+      
+        
+        
+        
+          
+          
+          
+          
+          
+          
+        
+      
+      
+      
+    
+    
+      
+      
+      
+        
+        
+        
+          
+          
+          
+          
+          
+          
+        
+      
+      
+      
+    
+    
+      
+        [Event Procedure]
+      
+      
+        Sales Analysis
+        
+        
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+        
+      
+      
+        
+
+
+Sub PrintReports(ReportView As AcView)
+    ' This procedure used in Preview_Click and Print_Click Sub procedures.
+    ' Preview or print report selected in the ReportToPrint option group.
+    ' Then close the Print Sales Reports Dialog form.
+    Dim strReportName As String
+    Dim strReportFilter As String
+    Dim lOrderCount As Long
+
+    ' Determine report filtering
+    If Nz(Me.lstReportFilter) &lt;&gt; "" Then
+        strReportFilter = "([SalesGroupingField] = """ &amp; Me.lstReportFilter &amp; """)"
+    End If
+    
+    ' Determine reporting time frame
+    Select Case Me.lstSalesPeriod
+    Case ByYear
+        strReportName = "Yearly Sales Report"
+        lOrderCount = DCountWrapper("*", "Sales Analysis", "[Year]=" &amp; Me.cbYear)
+    Case ByQuarter
+        strReportName = "Quarterly Sales Report"
+        lOrderCount = DCountWrapper("*", "Sales Analysis", "[Year]=" &amp; Me.cbYear &amp; " AND [Quarter]=" &amp; Me.cbQuarter)
+    Case ByMonth
+        strReportName = "Monthly Sales Report"
+        lOrderCount = DCountWrapper("*", "Sales Analysis", "[Year]=" &amp; Me.cbYear &amp; " AND [Month]=" &amp; Me.cbMonth)
+    End Select
+        
+    If lOrderCount &gt; 0 Then
+        TempVars.Add "Group By", Me.lstSalesReports.Value
+        TempVars.Add "Display", DLookupStringWrapper("[Display]", "Sales Reports", "[Group By]='" &amp; Nz(Me.lstSalesReports) &amp; "'")
+        TempVars.Add "Year", Me.cbYear.Value
+        TempVars.Add "Quarter", Me.cbQuarter.Value
+        TempVars.Add "Month", Me.cbMonth.Value
+        
+        eh.TryToCloseObject
+        DoCmd.OpenReport strReportName, ReportView, , strReportFilter, acWindowNormal
+    Else
+        MsgBoxOKOnly NoSalesInPeriod
+    End If
+End Sub
+    
+      
+    
+  

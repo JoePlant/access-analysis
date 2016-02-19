@@ -1,0 +1,125 @@
+<Database name='Northwind 2007.accdb' >
+  <Properties count='0' >
+  </Properties>
+  <Forms count='34' >
+    <Form name='Active Orders Subform for Home' fileName='Form.Active Orders Subform for Home.xml' >
+    </Form>
+    <Form name='Home' fileName='Form.Home.xml' >
+    </Form>
+    <Form name='Inventory to reorder Subform for Home' fileName='Form.Inventory to reorder Subform for Home.xml' >
+    </Form>
+    <Form name='Login Dialog' fileName='Form.Login Dialog.xml' >
+    </Form>
+    <Form name='Sales Reports Dialog' fileName='Form.Sales Reports Dialog.xml' >
+    </Form>
+    <Form name='Startup Screen' fileName='Form.Startup Screen.xml' >
+    </Form>
+    <Form name='Product Details' fileName='Form.Product Details.xml' >
+    </Form>
+    <Form name='Product Transactions Subform for Product Details' fileName='Form.Product Transactions Subform for Product Details.xml' >
+    </Form>
+    <Form name='Supplier List' fileName='Form.Supplier List.xml' >
+    </Form>
+    <Form name='Purchase Order List' fileName='Form.Purchase Order List.xml' >
+    </Form>
+    <Form name='Customer Details' fileName='Form.Customer Details.xml' >
+    </Form>
+    <Form name='Order Details' fileName='Form.Order Details.xml' >
+    </Form>
+    <Form name='Order Subform for Order Details' fileName='Form.Order Subform for Order Details.xml' >
+    </Form>
+    <Form name='Purchase Order Details' fileName='Form.Purchase Order Details.xml' >
+    </Form>
+    <Form name='Purchases Subform for Purchase Order Details' fileName='Form.Purchases Subform for Purchase Order Details.xml' >
+    </Form>
+    <Form name='Receiving Subform for Purchase Order Details' fileName='Form.Receiving Subform for Purchase Order Details.xml' >
+    </Form>
+    <Form name='Shipper Details' fileName='Form.Shipper Details.xml' >
+    </Form>
+    <Form name='Customer List' fileName='Form.Customer List.xml' >
+    </Form>
+    <Form name='Product Sales by Category Chart' fileName='Form.Product Sales by Category Chart.xml' >
+    </Form>
+    <Form name='Shipper List' fileName='Form.Shipper List.xml' >
+    </Form>
+    <Form name='Inventory List' fileName='Form.Inventory List.xml' >
+    </Form>
+    <Form name='Order List' fileName='Form.Order List.xml' >
+    </Form>
+    <Form name='Product Category Sales by Month' fileName='Form.Product Category Sales by Month.xml' >
+    </Form>
+    <Form name='Sales Analysis Form' fileName='Form.Sales Analysis Form.xml' >
+    </Form>
+    <Form name='Customer Orders Subform' fileName='Form.Customer Orders Subform.xml' >
+    </Form>
+    <Form name='Employee Orders Subform' fileName='Form.Employee Orders Subform.xml' >
+    </Form>
+    <Form name='Supplier Products Subform' fileName='Form.Supplier Products Subform.xml' >
+    </Form>
+    <Form name='Supplier Purchases Subform' fileName='Form.Supplier Purchases Subform.xml' >
+    </Form>
+    <Form name='Employee Details' fileName='Form.Employee Details.xml' >
+    </Form>
+    <Form name='Employee List' fileName='Form.Employee List.xml' >
+    </Form>
+    <Form name='Sales Analysis Subform for Home Chart' fileName='Form.Sales Analysis Subform for Home Chart.xml' >
+    </Form>
+    <Form name='Supplier Details' fileName='Form.Supplier Details.xml' >
+    </Form>
+    <Form name='Product Sales by Total Revenue Chart' fileName='Form.Product Sales by Total Revenue Chart.xml' >
+    </Form>
+    <Form name='Product Sales Qty by Employee Chart' fileName='Form.Product Sales Qty by Employee Chart.xml' >
+    </Form>
+  </Forms>
+  <Reports count='15' >
+    <Report name='Customer Phone Book' fileName='Report.Customer Phone Book.xml' >
+    </Report>
+    <Report name='Supplier Phone Book' fileName='Report.Supplier Phone Book.xml' >
+    </Report>
+    <Report name='Employee Phone Book' fileName='Report.Employee Phone Book.xml' >
+    </Report>
+    <Report name='Monthly Sales Report' fileName='Report.Monthly Sales Report.xml' >
+    </Report>
+    <Report name='Yearly Sales Report' fileName='Report.Yearly Sales Report.xml' >
+    </Report>
+    <Report name='Invoice' fileName='Report.Invoice.xml' >
+    </Report>
+    <Report name='Product Sales Quantity by Employee' fileName='Report.Product Sales Quantity by Employee.xml' >
+    </Report>
+    <Report name='Top Ten Biggest Orders' fileName='Report.Top Ten Biggest Orders.xml' >
+    </Report>
+    <Report name='Customer Address Book' fileName='Report.Customer Address Book.xml' >
+    </Report>
+    <Report name='Employee Address Book' fileName='Report.Employee Address Book.xml' >
+    </Report>
+    <Report name='Supplier Address Book' fileName='Report.Supplier Address Book.xml' >
+    </Report>
+    <Report name='Product Category Sales by Month' fileName='Report.Product Category Sales by Month.xml' >
+    </Report>
+    <Report name='Product Sales by Category' fileName='Report.Product Sales by Category.xml' >
+    </Report>
+    <Report name='Product Sales by Total Revenue' fileName='Report.Product Sales by Total Revenue.xml' >
+    </Report>
+    <Report name='Quarterly Sales Report' fileName='Report.Quarterly Sales Report.xml' >
+    </Report>
+  </Reports>
+  <Modules count='8' >
+    <Module name='ErrorHandling' fileName='Module.ErrorHandling.xml' >
+    </Module>
+    <Module name='RecordsetWrapper' fileName='Module.RecordsetWrapper.xml' >
+    </Module>
+    <Module name='PurchaseOrders' fileName='Module.PurchaseOrders.xml' >
+    </Module>
+    <Module name='CustomerOrders' fileName='Module.CustomerOrders.xml' >
+    </Module>
+    <Module name='Inventory' fileName='Module.Inventory.xml' >
+    </Module>
+    <Module name='Privileges' fileName='Module.Privileges.xml' >
+    </Module>
+    <Module name='DomainFunctionWrappers' fileName='Module.DomainFunctionWrappers.xml' >
+    </Module>
+    <Module name='Utilities' fileName='Module.Utilities.xml' >
+    </Module>
+  </Modules>
+</Database>
+

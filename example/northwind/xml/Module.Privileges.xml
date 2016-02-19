@@ -1,0 +1,40 @@
+<Module name='Privileges' type='Standard Module' lines='27' >
+  <Declarations >
+Option Compare Database
+Option Explicit
+
+Public Enum PrivilegeEnum
+    Administrator_Privilege = 1
+    PurchaseApprovals_Privilege = 2
+End Enum
+  </Declarations>
+  <Section name='EmployeeHas' lineNo='8' type='Sub or Function' >
+
+Private Function EmployeeHas(EmployeeID As Long, PrivilegeID As PrivilegeEnum) As Boolean
+    EmployeeHas = DCountWrapper(&quot;*&quot;, &quot;Employee Privileges&quot;, &quot;[Employee ID]=&quot; &amp; EmployeeID &amp; &quot; AND [Privilege ID]=&quot; &amp; PrivilegeID) &gt; 0
+End Function
+  </Section>
+  <Section name='CanApprovePurchases' lineNo='12' type='Sub or Function' >
+
+Public Function CanApprovePurchases() As Boolean
+    
+    CanApprovePurchases = EmployeeHas(GetCurrentUserID(), PurchaseApprovals_Privilege)
+
+End Function
+  </Section>
+  <Section name='IsAdministrator' lineNo='18' type='Sub or Function' >
+
+Public Function IsAdministrator() As Boolean
+
+    IsAdministrator = EmployeeHas(GetCurrentUserID(), Administrator_Privilege)
+    
+End Function
+  </Section>
+  <Section name='GetCurrentUserID' lineNo='24' type='Sub or Function' >
+
+Public Function GetCurrentUserID() As Long
+    GetCurrentUserID = Nz(TempVars![CurrentUserID], 0)
+End Function
+  </Section>
+</Module>
+

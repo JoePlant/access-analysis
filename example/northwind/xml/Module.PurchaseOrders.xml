@@ -1,0 +1,178 @@
+<Module name='PurchaseOrders' type='Standard Module' lines='147' >
+  <Declarations >
+Option Compare Database
+Option Explicit
+
+Public Enum PurchaseOrderStatusEnum
+    New_PurchaseOrder = 0
+    Submitted_PurchaseOrder = 1
+    Approved_PurchaseOrder = 2
+    Closed_PurchaseOrder = 3
+End Enum
+  </Declarations>
+  <Section name='Generate' lineNo='10' type='Sub or Function' >
+
+
+Function Generate(SupplierID As Long, ProductID As Long, Quantity As Long, OrderID As Long, PurchaseOrderID As Long) As Boolean
+    Dim UnitCost As Long
+    UnitCost = GetStandardCost(Nz(ProductID, 0))
+    If Create(SupplierID, GetCurrentUserID(), OrderID, PurchaseOrderID) Then
+        Generate = CreateLineItem(PurchaseOrderID, ProductID, UnitCost, Quantity)
+    End If
+End Function
+  </Section>
+  <Section name='Create' lineNo='19' type='Sub or Function' >
+
+
+Function Create(SupplierID As Long, EmployeeID As Long, OrderID As Long, PurchaseOrderID As Long) As Boolean
+    Dim rsw As New RecordsetWrapper
+    If rsw.OpenRecordset(&quot;Purchase Orders&quot;) Then
+        With rsw.Recordset
+            .AddNew
+            ![Supplier ID] = SupplierID
+            If EmployeeID &gt; 0 Then
+                ![Created By] = EmployeeID
+                ![Creation Date] = Now()
+                ![Submitted By] = EmployeeID
+                ![Submitted Date] = Now()
+                ![Status ID] = Submitted_PurchaseOrder
+            End If
+            
+            If OrderID &gt; 0 Then
+                ![Notes] = InsertString(PurchaseGeneratedBasedOnOrder, CStr(OrderID))
+            End If
+            If rsw.Update Then
+                .Bookmark = .LastModified
+                PurchaseOrderID = ![Purchase Order ID]
+                Create = True
+            End If
+        End With
+    End If
+End Function
+  </Section>
+  <Section name='CreateLineItem' lineNo='46' type='Sub or Function' >
+
+
+Function CreateLineItem(PurchaseOrderID As Long, ProductID As Long, UnitCost As Long, Quantity As Long) As Boolean
+    Dim rsw As New RecordsetWrapper
+    If rsw.OpenRecordset(&quot;Purchase Order Details&quot;) Then
+        With rsw.Recordset
+            .AddNew
+            ![Purchase Order ID] = PurchaseOrderID
+            ![Product ID] = ProductID
+            ![Quantity] = Quantity
+            ![Unit Cost] = UnitCost
+            CreateLineItem = rsw.Update
+        End With
+    End If
+End Function
+  </Section>
+  <Section name='OpenOrder' lineNo='61' type='Sub or Function' >
+
+
+Sub OpenOrder(Optional PurchaseOrderID As Long)
+    If (PurchaseOrderID &gt; 0) Then
+        DoCmd.OpenForm &quot;Purchase Order Details&quot;, acNormal, , &quot;[Purchase Order ID]=&quot; &amp; PurchaseOrderID, acFormEdit, acDialog
+    Else
+        DoCmd.OpenForm &quot;Purchase Order Details&quot;, acNormal, , , acFormAdd, acDialog
+    End If
+End Sub
+  </Section>
+  <Section name='NewOrder' lineNo='70' type='Sub or Function' >
+
+
+Sub NewOrder()
+    OpenOrder
+End Sub
+  </Section>
+  <Section name='Delete' lineNo='75' type='Sub or Function' >
+
+
+Function Delete(PurchaseOrderID As Long) As Boolean
+    Dim rsw As New RecordsetWrapper
+    If rsw.OpenRecordset(&quot;Purchase Orders&quot;, &quot;[Purchase Order ID] = &quot; &amp; PurchaseOrderID) Then
+        Delete = rsw.Delete
+    End If
+End Function
+  </Section>
+  <Section name='SetStatus' lineNo='83' type='Sub or Function' >
+
+
+Private Function SetStatus(PurchaseOrderID As Long, Status As PurchaseOrderStatusEnum) As Boolean
+    Dim rsw As New RecordsetWrapper
+    If rsw.OpenRecordset(&quot;Purchase Orders&quot;, &quot;[Purchase Order ID] = &quot; &amp; PurchaseOrderID) Then
+        With rsw.Recordset
+            If Not .EOF Then
+                .Edit
+                ![Status ID] = Status
+                Select Case Status
+                Case New_PurchaseOrder
+                    ![Creation Date] = Now()
+                    ![Created By] = GetCurrentUserID
+                Case Submitted_PurchaseOrder
+                    ![Submitted Date] = Now()
+                    ![Submitted By] = GetCurrentUserID
+                Case Approved_PurchaseOrder
+                    ![Approved Date] = Now()
+                    ![Approved By] = GetCurrentUserID
+                End Select
+                SetStatus = rsw.Update
+            End If
+        End With
+    End If
+End Function
+  </Section>
+  <Section name='GetStatus' lineNo='108' type='Sub or Function' >
+
+
+Function GetStatus(PurchaseOrderID) As PurchaseOrderStatusEnum
+    If IsNull(PurchaseOrderID) Then
+        GetStatus = New_PurchaseOrder
+    Else
+        GetStatus = DLookupNumberWrapper(&quot;[Status ID]&quot;, &quot;Purchase Orders&quot;, &quot;[Purchase Order ID] = &quot; &amp; PurchaseOrderID, New_PurchaseOrder)
+    End If
+End Function
+  </Section>
+  <Section name='MarkApproved' lineNo='117' type='Sub or Function' >
+
+
+Function MarkApproved(PurchaseOrderID As Long) As Boolean
+    If Not Privileges.CanApprovePurchases() Then
+        Exit Function
+    End If
+
+    If SetStatus(PurchaseOrderID, Approved_PurchaseOrder) Then
+        MarkApproved = True
+    End If
+End Function
+  </Section>
+  <Section name='MarkSubmitted' lineNo='128' type='Sub or Function' >
+
+
+Function MarkSubmitted(PurchaseOrderID As Long) As Boolean
+    MarkSubmitted = SetStatus(PurchaseOrderID, Submitted_PurchaseOrder)
+End Function
+  </Section>
+  <Section name='Exists' lineNo='133' type='Sub or Function' >
+
+
+Function Exists(PurchaseOrderID As Long) As Boolean
+    Exists = Not IsNull(DLookupWrapper(&quot;[Purchase Order ID]&quot;, &quot;Purchase Orders&quot;, &quot;[Purchase Order ID]=&quot; &amp; PurchaseOrderID))
+End Function
+  </Section>
+  <Section name='GetStandardCost' lineNo='138' type='Sub or Function' >
+
+
+Function GetStandardCost(lProductID As Long) As Currency
+    GetStandardCost = DLookupNumberWrapper(&quot;[Standard Cost]&quot;, &quot;Products&quot;, &quot;[ID]=&quot; &amp; lProductID)
+End Function
+  </Section>
+  <Section name='GetListPrice' lineNo='143' type='Sub or Function' >
+
+
+Function GetListPrice(lProductID As Long) As Currency
+    GetListPrice = DLookupNumberWrapper(&quot;[List Price]&quot;, &quot;Products&quot;, &quot;[ID] = &quot; &amp; lProductID)
+End Function
+  </Section>
+</Module>
+

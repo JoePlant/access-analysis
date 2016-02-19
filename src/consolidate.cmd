@@ -1,7 +1,10 @@
 rem @echo off
 set database=database.xml
-set dir=.\xml
-set output=Output
+set dir=..\temporary\xml
+set output=..\temporary\output
+rem set dir=..\example\northwind\xml
+rem set output=..\example\northwind\output
+
 
 if EXIST Working goto Working_exists
 mkdir Working
@@ -30,6 +33,9 @@ rem %nxslt% Working\database.xml Stylesheets\add-meta-data.xslt -o Working\datab
 %nxslt% Working\database-meta-data.xml Stylesheets\extract-link-data.xslt -o Working\linkdata.xml 
 
 %nxslt% Working\linkdata.xml StyleSheets\render-html.xslt -o "%output%\index.html" 
+
+%nxslt% Working\linkdata.xml StyleSheets\excel-form.xslt -o "%output%\Excel.Forms.xls" 
+rem %nxslt% Working\linkdata.xml StyleSheets\excel-report.xslt -o "%output%\Excel.Reports.xls" 
 
 rem %nxslt% Working\linkdata.xml StyleSheets\render-link-dotml.xslt -o Working\links.dotml
 rem %nxslt% Working\links.dotml %dotml%\dotml2dot.xsl -o "Working\links.gv" 

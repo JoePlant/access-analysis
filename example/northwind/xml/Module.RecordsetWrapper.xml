@@ -1,0 +1,173 @@
+<Module name='RecordsetWrapper' type='Class Module' lines='148' >
+  <Declarations >
+Option Compare Database
+Option Explicit
+
+Private m_rs As DAO.Recordset2
+  </Declarations>
+  <Section name='GetRecordsetClone' lineNo='5' type='Sub or Function' >
+
+
+Public Function GetRecordsetClone(rs As DAO.Recordset2) As DAO.Recordset2
+    If Not m_rs Is Nothing Then
+        Debug.Assert False &apos; This is only designed to be used once
+    Else
+        Set m_rs = rs.Clone
+        Set GetRecordsetClone = m_rs
+    End If
+End Function
+  </Section>
+  <Section name='OpenRecordset' lineNo='15' type='Sub or Function' >
+
+
+Public Function OpenRecordset(Domain As String, _
+                              Optional Criteria As String = &quot;1=1&quot;, _
+                              Optional OrderBy As String, _
+                              Optional RecordsetType As DAO.RecordsetTypeEnum = dbOpenDynaset, _
+                              Optional RecordsetOptions As DAO.RecordsetOptionEnum _
+                              ) As Boolean
+    
+    
+    If Not m_rs Is Nothing Then
+        &apos; Close the recordset so it can be re-used
+        CloseRecordset
+    End If
+    
+    Dim strSQL As String
+    strSQL = &quot;SELECT * FROM [&quot; &amp; Domain &amp; &quot;] WHERE &quot; &amp; Criteria
+    
+    If OrderBy &lt;&gt; &quot;&quot; Then
+        strSQL = strSQL &amp; &quot; ORDER BY &quot; &amp; OrderBy
+    End If
+    
+    On Error GoTo ErrorHandler
+    Set m_rs = CurrentDb.OpenRecordset(strSQL, RecordsetType, RecordsetOptions)
+    OpenRecordset = True
+
+Done:
+    Exit Function
+ErrorHandler:
+    &apos; verify the private Recordset object was not set
+    Debug.Assert m_rs Is Nothing
+    
+    &apos; Resume statement will be hit when debugging
+    If eh.LogError(&quot;RecordsetWrapper.OpenRecordset&quot;, &quot;strSQL = &quot; &amp; Chr(34) &amp; strSQL &amp; Chr(34)) Then Resume
+End Function
+  </Section>
+  <Section name='Delete' lineNo='50' type='Sub or Function' >
+
+
+Public Function Delete() As Boolean
+    On Error GoTo ErrorHandler
+    
+    m_rs.Delete
+    Delete = True
+    
+Done:
+    Exit Function
+ErrorHandler:
+    &apos; Resume statement will be hit when debugging
+    If eh.LogError(&quot;RecordsetWrapper.Delete&quot;) Then Resume
+End Function
+  </Section>
+  <Section name='AddNew' lineNo='64' type='Sub or Function' >
+
+
+Public Function AddNew() As Boolean
+    On Error GoTo ErrorHandler
+    
+    m_rs.AddNew
+    AddNew = True
+    
+Done:
+    Exit Function
+ErrorHandler:
+    &apos; Resume statement will be hit when debugging
+    If eh.LogError(&quot;RecordsetWrapper.AddNew&quot;) Then Resume
+End Function
+  </Section>
+  <Section name='Edit' lineNo='78' type='Sub or Function' >
+
+
+Public Function Edit() As Boolean
+    On Error GoTo ErrorHandler
+    
+    m_rs.Edit
+    Edit = True
+    
+Done:
+    Exit Function
+ErrorHandler:
+    &apos; Resume statement will be hit when debugging
+    If eh.LogError(&quot;RecordsetWrapper.Edit&quot;) Then Resume
+End Function
+  </Section>
+  <Section name='Update' lineNo='92' type='Sub or Function' >
+
+
+Public Function Update() As Boolean
+    On Error GoTo ErrorHandler
+    
+    m_rs.Update
+    Update = True
+    
+Done:
+    Exit Function
+ErrorHandler:
+    &apos; Resume statement will be hit when debugging
+    If eh.LogError(&quot;RecordsetWrapper.Update&quot;) Then Resume
+End Function
+  </Section>
+  <Section name='MoveNext' lineNo='106' type='Sub or Function' >
+
+
+Public Function MoveNext() As Boolean
+    On Error GoTo ErrorHandler
+    
+    m_rs.MoveNext
+    MoveNext = True
+    
+Done:
+    Exit Function
+ErrorHandler:
+    &apos; Resume statement will be hit when debugging
+    If eh.LogError(&quot;RecordsetWrapper.MoveNext&quot;) Then Resume
+End Function
+  </Section>
+  <Section name='CloseRecordset' lineNo='120' type='Sub or Function' >
+
+
+Public Function CloseRecordset() As Boolean
+    On Error GoTo ErrorHandler
+    
+    m_rs.Close
+    CloseRecordset = True
+    
+Done:
+    Set m_rs = Nothing
+    Exit Function
+ErrorHandler:
+    &apos; Resume statement will be hit when debugging
+    If eh.LogError(&quot;RecordsetWrapper.CloseRecordset&quot;) Then Resume
+End Function
+  </Section>
+  <Section name='Recordset' lineNo='135' type='Property Get' >
+
+
+Public Property Get Recordset() As DAO.Recordset2
+    Set Recordset = m_rs
+End Property
+  </Section>
+  <Section name='Class_Terminate' lineNo='140' type='Sub or Function' >
+
+
+Private Sub Class_Terminate()
+    If Not m_rs Is Nothing Then
+        m_rs.Close
+        Set m_rs = Nothing
+    End If
+End Sub
+
+  </Section>
+</Module>
+

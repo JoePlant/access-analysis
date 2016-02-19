@@ -1,0 +1,357 @@
+<Module name='Inventory' type='Standard Module' lines='310' >
+  <Declarations >
+Option Compare Database
+Option Explicit
+
+Public Enum InventoryTransactionTypeEnum
+    Purchase_TransactionType = 1
+    Sold_TransactionType = 2
+    Hold_TransactionType = 3
+End Enum
+
+Type InventoryTransaction
+    ProductID As Long              &apos;Product being added or removed to inventory
+    TransactionType As InventoryTransactionTypeEnum     &apos;1=Purchase; 2=Sale; 3=Hold; 4=Waste;
+    Quantity As Long               &apos;Quanitity specifed for purchase, sale, hold, etc.
+    QuantityGranted As Long        &apos;Actual Quanity Granted; may be less than specfied
+    InventoryID As Long            &apos;Inventory Transaction ID returned to the caller
+    AllOrNothing As Boolean        &apos;All or nothing flag for product allocations
+    Comments As String
+End Type
+
+Public Enum OrderItemStatusEnum
+    None_OrderItemStatus = 0
+    OnHold_OrderItemStatus = 1
+    Invoiced_OrderItemStatus = 2
+    Shipped_OrderItemStatus = 3
+    OnOrder_OrderItemStatus = 4
+    NoStock_OrderItemStatus = 5
+End Enum
+
+Private Const m_cNew_InventoryID = -1
+  </Declarations>
+  <Section name='NewInventoryID' lineNo='30' type='Property Get' >
+
+
+Public Property Get NewInventoryID() As Long
+    NewInventoryID = m_cNew_InventoryID
+End Property
+  </Section>
+  <Section name='AddPurchase' lineNo='35' type='Sub or Function' >
+
+
+Function AddPurchase(PurchaseOrderID As Long, ProductID As Long, Qty As Long, ByRef InventoryID As Long) As Boolean
+    Dim IT As InventoryTransaction
+          
+    IT.TransactionType = Purchase_TransactionType
+    IT.ProductID = ProductID
+    IT.Quantity = Qty
+    IT.InventoryID = m_cNew_InventoryID
+    
+    If EditTransaction(IT, , PurchaseOrderID) Then
+        AddPurchase = True
+        InventoryID = IT.InventoryID
+    End If
+End Function
+  </Section>
+  <Section name='RemovePurchase' lineNo='50' type='Sub or Function' >
+
+
+Function RemovePurchase(lInventoryID As Long)
+    MsgBoxOKOnly CannotRemovePostedInventory
+End Function
+  </Section>
+  <Section name='GetQtyAvailable' lineNo='55' type='Sub or Function' >
+
+
+Function GetQtyAvailable(ProductID As Long) As Long
+    GetQtyAvailable = GetInventoryQuantity(&quot;[Qty Available]&quot;, ProductID)
+End Function
+  </Section>
+  <Section name='GetQtyOnHand' lineNo='60' type='Sub or Function' >
+
+
+Function GetQtyOnHand(ProductID As Long) As Long
+    GetQtyOnHand = GetInventoryQuantity(&quot;[Qty On Hand]&quot;, ProductID)
+End Function
+  </Section>
+  <Section name='GetQtyToReorder' lineNo='65' type='Sub or Function' >
+
+
+Function GetQtyToReorder(ProductID As Long) As Long
+    GetQtyToReorder = GetInventoryQuantity(&quot;[Qty To Reorder]&quot;, ProductID)
+End Function
+  </Section>
+  <Section name='GetQtyOnBackOrder' lineNo='70' type='Sub or Function' >
+
+
+Function GetQtyOnBackOrder(ProductID As Long) As Long
+    GetQtyOnBackOrder = GetInventoryQuantity(&quot;[Qty On Back Order]&quot;, ProductID)
+End Function
+  </Section>
+  <Section name='GetInventoryQuantity' lineNo='75' type='Sub or Function' >
+
+
+Private Function GetInventoryQuantity(FieldName As String, ProductID As Long) As Long
+    GetInventoryQuantity = DLookupNumberWrapper(FieldName, &quot;Inventory&quot;, &quot;[Product ID] = &quot; &amp; ProductID)
+End Function
+  </Section>
+  <Section name='RequestHold' lineNo='80' type='Sub or Function' >
+
+
+Function RequestHold(OrderID As Long, IT As InventoryTransaction) As Boolean
+
+    IT.TransactionType = Hold_TransactionType
+    
+    If (IT.InventoryID = m_cNew_InventoryID) Then
+        RequestHold = AddHold(OrderID, IT)
+    Else
+        RequestHold = ModifyHold(IT)
+    End If
+
+End Function
+  </Section>
+  <Section name='AddHold' lineNo='93' type='Sub or Function' >
+
+
+Function AddHold(OrderID As Long, IT As InventoryTransaction) As Boolean
+    Dim QtyAvailable As Long
+    Dim QtyToHold As Long
+    Dim QtyRequested As Long
+    
+    &apos; Intialize Inventory quantities
+    QtyAvailable = GetQtyAvailable(IT.ProductID)
+    QtyRequested = IT.Quantity
+    QtyToHold = 0
+    
+    &apos; Check if we have sufficient Inventory
+    If QtyRequested &gt; QtyAvailable Then
+        If Not IT.AllOrNothing Then
+            QtyToHold = QtyAvailable
+        End If
+    Else
+        QtyToHold = QtyRequested
+    End If
+    
+    &apos; Execute the Hold
+    If QtyToHold &gt; 0 Then
+        IT.TransactionType = Hold_TransactionType
+        IT.Quantity = QtyToHold
+        AddHold = EditTransaction(IT, OrderID)
+        IT.Quantity = QtyRequested
+    Else
+        IT.QuantityGranted = 0
+    End If
+    
+End Function
+  </Section>
+  <Section name='ModifyHold' lineNo='125' type='Sub or Function' >
+
+
+Function ModifyHold(IT As InventoryTransaction) As Boolean
+    Dim ChangeInQuantity As Long
+    Dim IT_Existing As InventoryTransaction
+    
+    &apos; Get Information on Previous Hold
+    IT_Existing.InventoryID = IT.InventoryID
+    If GetTransaction(IT_Existing) Then
+        ChangeInQuantity = IT.Quantity - IT_Existing.Quantity
+        
+        &apos; Determine if we have sufficient Inventory to increase Hold
+        If ChangeInQuantity &lt; 0 Or ChangeInQuantity &lt; GetQtyAvailable(IT.ProductID) Then
+            IT.Quantity = IT.Quantity
+            If EditTransaction(IT) Then
+                IT.QuantityGranted = IT.Quantity
+                ModifyHold = True
+            Else
+                IT.QuantityGranted = IT_Existing.Quantity
+            End If
+        End If
+    End If
+
+End Function
+  </Section>
+  <Section name='HoldToSold' lineNo='149' type='Sub or Function' >
+
+
+Function HoldToSold(InventoryID As Long) As Boolean
+    Dim IT As InventoryTransaction
+    
+    IT.InventoryID = InventoryID
+    If GetTransaction(IT) Then
+        IT.TransactionType = Sold_TransactionType
+        If EditTransaction(IT) Then
+            HoldToSold = True
+        End If
+    End If
+End Function
+  </Section>
+  <Section name='RemoveHold' lineNo='162' type='Sub or Function' >
+
+
+Function RemoveHold(InventoryID As Long) As Boolean
+    RemoveHold = DeleteTransaction(InventoryID)
+End Function
+  </Section>
+  <Section name='GetTransaction' lineNo='167' type='Sub or Function' >
+
+
+Function GetTransaction(IT As InventoryTransaction) As Boolean
+    Dim rsw As New RecordsetWrapper
+    If rsw.OpenRecordset(&quot;Inventory Transactions&quot;, &quot;[Transaction ID] = &quot; &amp; IT.InventoryID) Then
+        With rsw.Recordset
+            If Not .EOF Then
+                IT.ProductID = ![Product ID]
+                IT.Quantity = ![Quantity]
+                IT.TransactionType = ![Transaction Type]
+                IT.Comments = Nz(![Comments])
+                GetTransaction = True
+            End If
+        End With
+    End If
+End Function
+  </Section>
+  <Section name='EditTransaction' lineNo='183' type='Sub or Function' >
+
+
+Function EditTransaction(IT As InventoryTransaction, Optional CustomerOrderID, Optional PurchaseOrderID) As Boolean
+    Dim rsw As New RecordsetWrapper
+    If rsw.OpenRecordset(&quot;Inventory Transactions&quot;, &quot;[Transaction ID] = &quot; &amp; IT.InventoryID) Then
+        With rsw.Recordset
+            If IT.TransactionType &lt;= 0 Then
+                Exit Function
+            ElseIf IT.InventoryID = m_cNew_InventoryID Then
+                rsw.AddNew
+            ElseIf .EOF Then
+                Exit Function
+            Else
+                rsw.Edit
+                ![Transaction Modified Date] = Now()
+            End If
+            
+            ![Product ID] = IT.ProductID
+            ![Quantity] = IT.Quantity
+            ![Transaction Type] = IT.TransactionType
+            ![Comments] = IIf(IT.Comments = &quot;&quot;, Null, IT.Comments)
+            If Not IsMissing(CustomerOrderID) Then ![Customer Order ID] = CustomerOrderID
+            If Not IsMissing(PurchaseOrderID) Then ![Purchase Order ID] = PurchaseOrderID
+            EditTransaction = rsw.Update
+            
+            If IT.InventoryID = m_cNew_InventoryID Then
+                rsw.Recordset.Bookmark = rsw.Recordset.LastModified
+                IT.InventoryID = ![Transaction ID]
+            End If
+        End With
+    End If
+End Function
+  </Section>
+  <Section name='DeleteTransaction' lineNo='215' type='Sub or Function' >
+
+
+Function DeleteTransaction(InventoryID As Long) As Boolean
+    Dim rsw As New RecordsetWrapper
+    If rsw.OpenRecordset(&quot;Inventory Transactions&quot;, &quot;[Transaction ID] = &quot; &amp; InventoryID) Then
+        DeleteTransaction = rsw.Delete
+    End If
+End Function
+  </Section>
+  <Section name='RestockProduct' lineNo='223' type='Sub or Function' >
+
+
+Function RestockProduct(ProductID As Long) As Boolean
+    Dim SupplierID As Long
+    Dim QtyToOrder As Long
+    Dim PurchaseOrderID As Long
+    Dim UnitCost As Long
+    
+    QtyToOrder = GetQtyToReorder(ProductID)
+    
+    If QtyToOrder &gt; 0 Then
+        
+        SupplierID = FindProductSupplier(ProductID)
+    
+        If SupplierID &gt; 0 Then
+                          
+            &apos; Generate new Purchase Order if necessary
+            If PurchaseOrderID = 0 Then
+                If Not PurchaseOrders.Create(SupplierID, GetCurrentUserID(), -1, PurchaseOrderID) Then
+                    Exit Function
+                End If
+            End If
+            
+            &apos; Set unit cost to standard cost for product
+            UnitCost = GetStandardCost(Nz(ProductID, 0))
+            
+            &apos; Add product line item to Purchase Order
+            If Not PurchaseOrders.CreateLineItem(PurchaseOrderID, ProductID, UnitCost, QtyToOrder) Then
+                Exit Function
+            End If
+
+        Else
+            &apos; Suggested Enhancement: Handle case where product does not have a supplier
+        End If
+        
+    End If
+
+    RestockProduct = True
+End Function
+  </Section>
+  <Section name='FindProductSupplier' lineNo='262' type='Sub or Function' >
+
+
+Function FindProductSupplier(ProductID As Long) As Long
+    FindProductSupplier = DLookupNumberWrapper(&quot;[Supplier IDs].Value&quot;, &quot;Products&quot;, &quot;[ID]=&quot; &amp; ProductID)
+End Function
+  </Section>
+  <Section name='GetRestockingPurchaseOrder' lineNo='267' type='Sub or Function' >
+
+
+Function GetRestockingPurchaseOrder(SupplierID) As Long
+    GetRestockingPurchaseOrder = DLookupNumberWrapper(&quot;[Purchase Order ID]&quot;, &quot;Purchase Orders&quot;, &quot;[Supplier ID]=&quot; &amp; SupplierID &amp; &quot; AND [Status ID] &lt; 2&quot;)
+End Function
+  </Section>
+  <Section name='FillBackOrders' lineNo='272' type='Sub or Function' >
+
+
+Function FillBackOrders(ProductID) As Boolean
+    Dim rsw As New RecordsetWrapper
+    If rsw.OpenRecordset(&quot;Order Details&quot;, &quot;[Product ID] =&quot; &amp; ProductID &amp; &quot; AND [Status ID] = &quot; &amp; OnOrder_OrderItemStatus) Then
+        With rsw.Recordset
+            Dim IT As InventoryTransaction
+            While Not .EOF
+                &apos; Back Order Products should not be associated with any Inventory at this point
+                If IsNull(![Inventory ID]) Then
+                    IT.Quantity = ![Quantity]
+                    IT.ProductID = ![Product ID]
+                    IT.InventoryID = m_cNew_InventoryID
+                
+                    If FillBackOrder(![Order ID], IT) Then
+                        .Edit
+                        ![Status ID] = OnHold_OrderItemStatus
+                        ![Inventory ID] = IT.InventoryID
+                        .Update
+                        MsgBoxOKOnly FilledBackOrderedProduct, ![Order ID]
+                    End If
+                End If
+                
+                rsw.MoveNext
+            Wend
+        End With
+        FillBackOrders = True
+    End If
+End Function
+  </Section>
+  <Section name='FillBackOrder' lineNo='301' type='Sub or Function' >
+
+
+Function FillBackOrder(OrderID As Long, IT As InventoryTransaction) As Boolean
+    IT.TransactionType = Hold_TransactionType
+    IT.Comments = InsertString(FillBackOrderedProduct, CStr(OrderID))
+    
+    If GetQtyAvailable(IT.ProductID) &gt;= IT.Quantity Then
+        FillBackOrder = EditTransaction(IT)
+    End If
+End Function
+  </Section>
+</Module>
+

@@ -1,0 +1,73 @@
+<Module name='CustomerOrders' type='Standard Module' lines='58' >
+  <Declarations >
+Option Compare Database
+Option Explicit
+
+Public Enum CustomerOrderStatusEnum
+    New_CustomerOrder = 0
+    Invoiced_CustomerOrder = 1
+    Shipped_CustomerOrder = 2
+    Closed_CustomerOrder = 3
+End Enum
+  </Declarations>
+  <Section name='CreateInvoice' lineNo='10' type='Sub or Function' >
+
+
+Function CreateInvoice(OrderID As Long, Amt As Currency, InvoiceID As Long) As Boolean
+    Dim rsw As New RecordsetWrapper
+    If rsw.OpenRecordset(&quot;Invoices&quot;) Then
+        With rsw.Recordset
+            If Not rsw.AddNew Then Exit Function
+            ![Order ID] = OrderID
+            ![Amount Due] = Amt
+            If rsw.Update Then
+                .Bookmark = .LastModified
+                InvoiceID = ![Invoice ID]
+                CreateInvoice = True
+            End If
+        End With
+    End If
+End Function
+  </Section>
+  <Section name='IsInvoiced' lineNo='27' type='Sub or Function' >
+
+
+Function IsInvoiced(OrderID As Long) As Boolean
+    IsInvoiced = DCountWrapper(&quot;[Invoice ID]&quot;, &quot;Invoices&quot;, &quot;[Order ID]=&quot; &amp; OrderID) &gt; 0
+End Function
+  </Section>
+  <Section name='PrintInvoice' lineNo='32' type='Sub or Function' >
+
+
+Function PrintInvoice(OrderID As Long) As Boolean
+    DoCmd.OpenReport &quot;Invoice&quot;, acViewPreview, , &quot;[Order ID]=&quot; &amp; OrderID, acDialog
+End Function
+  </Section>
+  <Section name='SetStatus' lineNo='37' type='Sub or Function' >
+
+
+Function SetStatus(OrderID As Long, Status As CustomerOrderStatusEnum) As Boolean
+    Dim rsw As New RecordsetWrapper
+    If rsw.OpenRecordset(&quot;Orders&quot;, &quot;[Order ID] = &quot; &amp; OrderID) Then
+        With rsw.Recordset
+            If Not .EOF Then
+                .Edit
+                ![Status ID] = Status
+                SetStatus = rsw.Update
+            End If
+        End With
+    End If
+End Function
+  </Section>
+  <Section name='Delete' lineNo='51' type='Sub or Function' >
+
+
+Function Delete(OrderID As Long) As Boolean
+    Dim rsw As New RecordsetWrapper
+    If rsw.OpenRecordset(&quot;Orders&quot;, &quot;[Order ID] = &quot; &amp; OrderID) Then
+        Delete = rsw.Delete
+    End If
+End Function
+  </Section>
+</Module>
+

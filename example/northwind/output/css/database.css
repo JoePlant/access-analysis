@@ -1,0 +1,125 @@
+.control-rectangle
+{
+	background-color: #E0E0E0;
+	color: #CCCCCC;
+	border-style: dotted;
+	border-width: 1px;
+	position: absolute;
+}
+
+.control-activex
+{
+	background-color: #EEEEEE;
+	color: #1b809e;
+	border-style: dotted;
+	border-width: 1px;
+	position: absolute;
+}
+
+.control-subform
+{
+	background-color: #FFFFFF;
+	border-style: dotted;
+	border-width: 2px;
+	position: absolute;
+}
+
+.control-tabcontrol
+{
+	background-color: #EEEEEE;
+	border-style: dotted;
+	border-width: 2px;
+	position: absolute;
+}
+
+.control-page
+{
+	background-color: #FFFFFF;
+	border-style: dotted;
+	border-width: 2px;
+}
+
+.control-image
+{
+	background-color: #DDDDDD;
+	border-style: dotted;
+	border-width: 2px;
+	position: absolute;
+}
+
+.control-label
+{
+	position: absolute;
+}
+
+.control-label .pre
+{
+	padding: 0px;
+	font-size: 8pt;
+	font-family: "Verdana", Sans-serif;
+	overflow: visible;
+	border-radius:1px;
+}
+
+.control-button
+{
+	position: absolute;
+}
+
+.control-combobox
+{
+	position: absolute;
+}
+
+.control-listbox
+{
+	position: absolute;
+}
+
+.control-checkbox
+{
+	position: absolute;
+}
+
+.control-textbox
+{
+	position: absolute;
+	background-color: white;
+	color: black;
+	border-style: solid;
+	border-width: 1px;
+}
+
+.control-optiongroup
+{
+	position: absolute;
+	border-style: dotted;
+	border-width: 1px;
+}
+
+.control-optionbutton
+{
+	position: absolute;
+}
+
+.form-def
+{
+	background-color:silver; 
+	border-style: groove;
+	font-family: "Verdana", Sans-serif;
+	font-size: 8pt;
+}
+
+.form-canvas
+{
+	position: relative;
+}
+
+.control-section
+{
+	position: relative;
+	background-color: #DDDDDD;
+	color: black;
+	border-style: dashed;
+	border-width: 1px;
+}

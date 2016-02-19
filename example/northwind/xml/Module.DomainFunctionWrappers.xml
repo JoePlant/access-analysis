@@ -1,0 +1,140 @@
+<Module name='DomainFunctionWrappers' type='Standard Module' lines='117' >
+  <Declarations >
+Option Compare Database
+Option Explicit
+
+Private Enum DomainFunctionWrapperEnum
+    DLookup_Wrapper
+    DCount_Wrapper
+    DSum_Wrapper
+    DMax_Wrapper
+    DMin_Wrapper
+    DAvg_Wrapper
+End Enum
+  </Declarations>
+  <Section name='DomainFunctionWrapper' lineNo='12' type='Sub or Function' >
+
+Private Function DomainFunctionWrapper(DomainFunction As DomainFunctionWrapperEnum, _
+                                    Expr As String, _
+                                    Domain As String, _
+                                    Optional Criteria As String) As Variant
+    On Error GoTo ErrorHandler
+    
+    Select Case DomainFunction
+    Case DLookup_Wrapper
+        DomainFunctionWrapper = DLookup(Expr, Domain, Criteria)
+    Case DCount_Wrapper
+        DomainFunctionWrapper = DCount(Expr, Domain, Criteria)
+    Case DSum_Wrapper
+        DomainFunctionWrapper = DSum(Expr, Domain, Criteria)
+    Case DMax_Wrapper
+        DomainFunctionWrapper = DMax(Expr, Domain, Criteria)
+    Case DMin_Wrapper
+        DomainFunctionWrapper = DMin(Expr, Domain, Criteria)
+    Case DSum_Wrapper
+        DomainFunctionWrapper = DSum(Expr, Domain, Criteria)
+    Case DAvg_Wrapper
+        DomainFunctionWrapper = DAvg(Expr, Domain, Criteria)
+    Case Else
+        &apos; Unexpected DomainFunction argument
+        Debug.Assert False
+    End Select
+
+Done:
+    Exit Function
+ErrorHandler:
+    Debug.Print Err.Number &amp; &quot; - &quot; &amp; Err.Description
+    
+    &apos; Resume statement will be hit when debugging
+    If eh.LogError(&quot;DomainFunctionWrapper&quot;, _
+                   &quot;DomainFunction = &quot; &amp; DomainFunction, _
+                   &quot;Expr = &quot; &amp; Expr, _
+                   &quot;Domain = &quot; &amp; Domain, _
+                   &quot;Criteria = &apos;&quot; &amp; Criteria &amp; &quot;&apos;&quot;) Then Resume
+End Function
+  </Section>
+  <Section name='DLookupWrapper' lineNo='51' type='Sub or Function' >
+
+
+&apos;--------------------------------------------------------
+&apos; DLookupWrapper is just like DLookup only it will trap errors.
+&apos;--------------------------------------------------------
+Public Function DLookupWrapper(Expr As String, Domain As String, Optional Criteria As String) As Variant
+    DLookupWrapper = DomainFunctionWrapper(DLookup_Wrapper, Expr, Domain, Criteria)
+End Function
+  </Section>
+  <Section name='DLookupStringWrapper' lineNo='59' type='Sub or Function' >
+
+
+&apos;--------------------------------------------------------
+&apos; DLookupStringWrapper is just like DLookup wrapped in an Nz
+&apos; This will always return a String.
+&apos;--------------------------------------------------------
+Public Function DLookupStringWrapper(Expr As String, Domain As String, Optional Criteria As String, Optional ValueIfNull As String = &quot;&quot;) As String
+    DLookupStringWrapper = Nz(DLookupWrapper(Expr, Domain, Criteria), ValueIfNull)
+End Function
+  </Section>
+  <Section name='DLookupNumberWrapper' lineNo='68' type='Sub or Function' >
+
+
+&apos;--------------------------------------------------------
+&apos; DLookupNumberWrapper is just like DLookup wrapped in
+&apos; an Nz that defaults to 0.
+&apos;--------------------------------------------------------
+Public Function DLookupNumberWrapper(Expr As String, Domain As String, Optional Criteria As String, Optional ValueIfNull = 0) As Variant
+    DLookupNumberWrapper = Nz(DLookupWrapper(Expr, Domain, Criteria), ValueIfNull)
+End Function
+  </Section>
+  <Section name='DCountWrapper' lineNo='77' type='Sub or Function' >
+
+
+&apos;--------------------------------------------------------
+&apos; DCountWrapper is just like DCount only it will trap errors.
+&apos;--------------------------------------------------------
+Public Function DCountWrapper(Expr As String, Domain As String, Optional Criteria As String) As Long
+    DCountWrapper = DomainFunctionWrapper(DCount_Wrapper, Expr, Domain, Criteria)
+End Function
+  </Section>
+  <Section name='DMaxWrapper' lineNo='85' type='Sub or Function' >
+
+
+&apos;--------------------------------------------------------
+&apos; DMaxWrapper is just like DMax only it will trap errors.
+&apos;--------------------------------------------------------
+Public Function DMaxWrapper(Expr As String, Domain As String, Optional Criteria As String) As Long
+    DMaxWrapper = DomainFunctionWrapper(DMax_Wrapper, Expr, Domain, Criteria)
+End Function
+  </Section>
+  <Section name='DMinWrapper' lineNo='93' type='Sub or Function' >
+
+
+&apos;--------------------------------------------------------
+&apos; DMinWrapper is just like DMin only it will trap errors.
+&apos;--------------------------------------------------------
+Public Function DMinWrapper(Expr As String, Domain As String, Optional Criteria As String) As Long
+    DMinWrapper = DomainFunctionWrapper(DMin_Wrapper, Expr, Domain, Criteria)
+End Function
+  </Section>
+  <Section name='DSumWrapper' lineNo='101' type='Sub or Function' >
+
+
+&apos;--------------------------------------------------------
+&apos; DSumWrapper is just like DSum only it will trap errors.
+&apos;--------------------------------------------------------
+Public Function DSumWrapper(Expr As String, Domain As String, Optional Criteria As String) As Long
+    DSumWrapper = DomainFunctionWrapper(DSum_Wrapper, Expr, Domain, Criteria)
+End Function
+  </Section>
+  <Section name='DAvgWrapper' lineNo='109' type='Sub or Function' >
+
+
+&apos;--------------------------------------------------------
+&apos; DAvgWrapper is just like DAvg only it will trap errors.
+&apos;--------------------------------------------------------
+Public Function DAvgWrapper(Expr As String, Domain As String, Optional Criteria As String) As Long
+    DAvgWrapper = DomainFunctionWrapper(DAvg_Wrapper, Expr, Domain, Criteria)
+End Function
+
+  </Section>
+</Module>
+
