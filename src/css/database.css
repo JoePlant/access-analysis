@@ -111,7 +111,20 @@
 	font-size: 8pt;
 }
 
+.report-def
+{
+	background-color:whitesmoke; 
+	border-style: groove;
+	font-family: "Verdana", Sans-serif;
+	font-size: 8pt;
+}
+
 .form-canvas
+{
+	position: relative;
+}
+
+.report-canvas
 {
 	position: relative;
 }

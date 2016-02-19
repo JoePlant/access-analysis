@@ -10,15 +10,11 @@
      indent="yes" />
 
 	<xsl:include href='render-summary.xslt' />
-	<xsl:include href='render-form.xslt' />
+  <xsl:include href='render-controls.xslt' />
+  <xsl:include href='render-form.xslt' />
+  <xsl:include href='render-report.xslt' />
+  <xsl:include href='render-module.xslt'/>
 
-	 <!--
-	<xsl:include href='render-form.xslt' />
-
-	<xsl:include href='render-tables.xslt' /> 
-	<xsl:include href='render-tables.xslt'/>
-	<xsl:include href='render-columns.xslt'/>
--->	
 	<xsl:variable name='crlf'>
 </xsl:variable>
 
@@ -111,6 +107,19 @@
       <xsl:apply-templates select='$all-forms' mode='form'>
         <xsl:sort select='@name'/>
       </xsl:apply-templates>
+
+      <a name='reports'/>
+      <h3>Reports</h3>
+      <xsl:apply-templates select='$reports' mode='report'>
+        <xsl:sort select='@name'/>
+      </xsl:apply-templates>
+
+      <a name='modules'/>
+      <h3>Modules</h3>
+      <xsl:apply-templates select='$modules' mode='module'>
+        <xsl:sort select='@name'/>
+      </xsl:apply-templates>
+
     </div>
 
   </div>
