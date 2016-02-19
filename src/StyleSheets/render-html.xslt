@@ -28,6 +28,10 @@
 	<xsl:variable name='sub-forms' select='/Database/Forms/Form[@subform]'/>
   <xsl:variable name='all-forms' select='$main-forms | $sub-forms'/>
 
+  <xsl:variable name='reports' select='/Database/Reports/Report'/>
+  <xsl:variable name='modules' select='/Database/Modules/Module'/>
+
+
   <xsl:template match="/">
 <html lang="en">
   <head>
@@ -48,7 +52,7 @@
     <![endif]-->
   </head>
   <body data-spy='scroll' data-target='.scrollspy'>
-    
+
     <nav class="navbar navbar-inverse navbar-static-top">
       <div class="container">
         <div class="navbar-header">
@@ -58,49 +62,39 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#"><xsl:value-of select='$db-name'/></a>
+          <a class="navbar-brand" href="#">
+            <xsl:value-of select='$db-name'/>
+          </a>
         </div>
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="#top">Home</a></li>
-			<li role="presentation" class="dropdown">
-				<a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-					<xsl:text>Form </xsl:text>
-					<xsl:call-template name='count-badge'><xsl:with-param name='items' select='$main-forms'/></xsl:call-template>
-					<xsl:text> </xsl:text><span class="caret"></span>
-				</a>
-				<ul class="dropdown-menu">
-					<xsl:for-each select='$main-forms'>
-            <xsl:sort select='@name'/>
-            <xsl:variable name='form-id' select='generate-id(.)'/>
-            <li><a href='#{$form-id}'><xsl:value-of select='@name'/></a></li>
-					</xsl:for-each>
-				</ul>
-			  </li>
-        <li role="presentation" class="dropdown">
-              <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-                <xsl:text>SubForms </xsl:text>
-                <xsl:call-template name='count-badge'>
-                  <xsl:with-param name='items' select='$sub-forms'/>
-                </xsl:call-template>
-                <xsl:text> </xsl:text>
-                <span class="caret"></span>
-              </a>
-              <ul class="dropdown-menu">
-                <xsl:for-each select='$sub-forms'>
-                  <xsl:sort select='@name'/>
-                  <xsl:variable name='form-id' select='generate-id(.)'/>
-                  <li>
-                    <a href='#{$form-id}'>
-                      <xsl:value-of select='@name'/>
-                    </a>
-                  </li>
-                </xsl:for-each>
-              </ul>
+            <li class="active">
+              <a href="#top">Home</a>
             </li>
-            <li><a href="#reports">Relationships</a></li>
+
+            <xsl:call-template name="build-dropdown">
+              <xsl:with-param name="menu">Form</xsl:with-param>
+              <xsl:with-param name="items" select="$main-forms"/>
+            </xsl:call-template>
+
+            <xsl:call-template name="build-dropdown">
+              <xsl:with-param name="menu">SubForms</xsl:with-param>
+              <xsl:with-param name="items" select="$sub-forms"/>
+            </xsl:call-template>
+
+            <xsl:call-template name="build-dropdown">
+              <xsl:with-param name="menu">Reports</xsl:with-param>
+              <xsl:with-param name="items" select="$reports"/>
+            </xsl:call-template>
+
+            <xsl:call-template name="build-dropdown">
+              <xsl:with-param name="menu">Modules</xsl:with-param>
+              <xsl:with-param name="items" select="$modules"/>
+            </xsl:call-template>
+
           </ul>
-        </div><!--/.nav-collapse -->
+        </div>
+        <!--/.nav-collapse -->
       </div>
     </nav>
 
@@ -185,6 +179,36 @@
 	<xsl:param name='number'>0</xsl:param>
 	<xsl:text> </xsl:text>
 	<span class='badge'><xsl:value-of select='$number'/></span>
+  </xsl:template>
+
+  <xsl:template name='build-dropdown'>
+    <xsl:param name="menu">Menu</xsl:param>
+    <xsl:param name="items" select="Menu"/>
+
+    <xsl:if test="$items">
+      <li role="presentation" class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+          <xsl:value-of select="$menu"/>
+          <xsl:text> </xsl:text>
+          <xsl:call-template name='count-badge'>
+            <xsl:with-param name='items' select='$items'/>
+          </xsl:call-template>
+          <xsl:text> </xsl:text>
+          <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+          <xsl:for-each select='$items'>
+            <xsl:sort select='@name'/>
+            <xsl:variable name='item-id' select='generate-id(.)'/>
+            <li>
+              <a href='#{$item-id}'>
+                <xsl:value-of select='@name'/>
+              </a>
+            </li>
+          </xsl:for-each>
+        </ul>
+      </li>
+    </xsl:if>
   </xsl:template>
 
 </xsl:stylesheet>

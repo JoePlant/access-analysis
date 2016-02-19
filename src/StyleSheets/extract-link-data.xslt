@@ -16,8 +16,11 @@
 				<xsl:apply-templates select='/Database/Forms/Form'/>
 			</Forms>
 			<Reports>
-				<xsl:apply-templates select='/Database/Reports/Report'/>
-			</Reports>
+        <xsl:apply-templates select='/Database/Reports/Report'/>
+      </Reports>
+      <Modules>
+        <xsl:apply-templates select='/Database/Modules/Module'/>
+      </Modules>
 		</Database>
 	</xsl:template>
 		
@@ -178,6 +181,12 @@
 			</References>
 		</Report>
 	</xsl:template>
+
+  <xsl:template match="Database/Modules/Module">
+    <Module name='{@name}' id='{@id}'>
+      <xsl:apply-templates/>
+    </Module>
+  </xsl:template>
 	
 	<xsl:template match='ControlRef'>
 		<xsl:variable name='name' select='@name'/>
