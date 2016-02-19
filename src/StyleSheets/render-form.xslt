@@ -64,13 +64,10 @@
               <tr>
                 <th>Form</th>
                 <td>
-                  <xsl:for-each select="Events/Code">
-                    
-                  </xsl:for-each>
+                  <xsl:apply-templates mode="code-button" select="Events/Code"/>
                 </td>
               </tr>
             </xsl:if>
-            <t</t>
           </table>
         </xsl:if>
         <table class='table table-bordered table-condensed table-hover'>
