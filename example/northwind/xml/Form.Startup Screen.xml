@@ -158,7 +158,7 @@
     <Property name='HorizontalDatasheetGridlineStyle' type='Integer' >1</Property>
     <Property name='VerticalDatasheetGridlineStyle' type='Integer' >1</Property>
     <Property name='DatasheetColumnHeaderUnderlineStyle' type='Integer' >1</Property>
-    <Property name='Hwnd' type='Long' >10558706</Property>
+    <Property name='Hwnd' type='Long' >3017870</Property>
     <Property name='Count' type='Integer' >4</Property>
     <Property name='LogicalPageWidth' type='Long' >11520</Property>
     <Property name='Visible' type='Boolean' >True</Property>
