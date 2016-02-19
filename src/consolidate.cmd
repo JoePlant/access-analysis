@@ -28,13 +28,13 @@ xcopy "%jquery%" %output%\lib\jquery /E /Y /I
 xcopy "css" %output%\css /E /Y /I
 
 @echo === Apply Templates ===
-rem %nxslt% %dir%\%database% Stylesheets\consolidate.xslt -o Working\database.xml 2> working\errors1.txt 
-rem %nxslt% Working\database.xml Stylesheets\add-meta-data.xslt -o Working\database-meta-data.xml 
+%nxslt% %dir%\%database% Stylesheets\consolidate.xslt -o Working\database.xml 2> working\errors1.txt 
+%nxslt% Working\database.xml Stylesheets\add-meta-data.xslt -o Working\database-meta-data.xml 
 %nxslt% Working\database-meta-data.xml Stylesheets\extract-link-data.xslt -o Working\linkdata.xml 
 
 %nxslt% Working\linkdata.xml StyleSheets\render-html.xslt -o "%output%\index.html" 
 
-%nxslt% Working\linkdata.xml StyleSheets\excel-form.xslt -o "%output%\Excel.Forms.xls" 
+%nxslt% Working\linkdata.xml StyleSheets\excel-output.xslt -o "%output%\Excel.Output.xls" 
 rem %nxslt% Working\linkdata.xml StyleSheets\excel-report.xslt -o "%output%\Excel.Reports.xls" 
 
 rem %nxslt% Working\linkdata.xml StyleSheets\render-link-dotml.xslt -o Working\links.dotml
