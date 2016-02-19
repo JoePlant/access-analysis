@@ -24,6 +24,22 @@
 	position: absolute;
 }
 
+.control-tabcontrol
+{
+	background-color: #EEEEEE;
+	border-style: dotted;
+	border-width: 2px;
+	position: absolute;
+}
+
+.control-page
+{
+	background-color: #FFFFFF;
+	border-style: dotted;
+	border-width: 2px;
+    overflow: scroll;
+}
+
 .control-image
 {
 	background-color: #DDDDDD;
@@ -70,7 +86,7 @@
 {
 	position: absolute;
 	background-color: white;
-	color: #black;
+	color: black;
 	border-style: solid;
 	border-width: 1px;
 }
@@ -104,7 +120,7 @@
 {
 	position: relative;
 	background-color: #DDDDDD;
-	color: #black;
+	color: black;
 	border-style: dashed;
 	border-width: 1px;
 }

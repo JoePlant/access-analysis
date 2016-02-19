@@ -25,6 +25,17 @@
 		<xsl:variable name='sub-forms' select='key("subforms-by-name", @name)' />
 		<xsl:variable name='height' select='(Properties/Property[@name="WindowHeight"]) div $twips-per-pixel'/>
 		<xsl:variable name='width' select='(Properties/Property[@name="WindowWidth"]) div $twips-per-pixel'/>
+    <xsl:variable name='default-view'>
+      <xsl:choose>
+        <xsl:when test='Properties/Property[@name="DefaultView"] = 0'>SingleForm</xsl:when>
+        <xsl:when test='Properties/Property[@name="DefaultView"] = 1'>ContinuousForm</xsl:when>
+        <xsl:when test='Properties/Property[@name="DefaultView"] = 2'>Datasheet</xsl:when>
+        <xsl:when test='Properties/Property[@name="DefaultView"] = 3'>PivotTable</xsl:when>
+        <xsl:when test='Properties/Property[@name="DefaultView"] = 4'>PivotChart</xsl:when>
+        <xsl:when test='Properties/Property[@name="DefaultView"] = 5'>SplitForm</xsl:when>
+        <xsl:otherwise></xsl:otherwise>
+      </xsl:choose>
+    </xsl:variable>
 <!--
     <xsl:variable name='required-height'>
       <xsl:call-template name='get-required-height'>
@@ -38,7 +49,7 @@
       </xsl:call-template>
     </xsl:variable>
     -->
-		<Form name='{@name}' id='{@id}' height="{$height}" width="{$width}">
+		<Form name='{@name}' id='{@id}' height="{$height}" width="{$width}" defaultView="{$default-view}">
 			<xsl:if test='count($sub-forms) > 0'>
 				<xsl:attribute name='subform'><xsl:value-of select='count($sub-forms)'/></xsl:attribute>
 			</xsl:if> 
@@ -56,6 +67,8 @@
 			<Sections>
 				<xsl:apply-templates select='Section' />
 			</Sections>
+
+      <xsl:apply-templates select='Module' />
 
 			<References>
 				<xsl:call-template name='search-vba'>	
@@ -106,8 +119,26 @@
 			</Controls>
 		</Section>
 	</xsl:template>
-	
-	<xsl:template match="Report">
+
+  <xsl:template match='Form/Module'>
+    <Module name='{@name}' line='{@lines}'>
+      <xsl:apply-templates/>
+    </Module>
+  </xsl:template>
+
+  <xsl:template match='Module/Declarations'>
+    <Declarations>
+      <xsl:value-of select='.'/>
+    </Declarations>
+  </xsl:template>
+
+  <xsl:template match='Module/Section'>
+    <Section id='{@id}' name='{@name}' lineNo='{@lineNo}' type='{@type}'>
+      <xsl:value-of select='.'/>
+    </Section>
+  </xsl:template>
+
+  <xsl:template match="Report">
 		<Report name='{@name}' id='{@id}'>
 			<Events>
 				<xsl:apply-templates select='Properties/Property[@method]' mode='code'/>

@@ -2,8 +2,14 @@
 Thumbs.db
 ehthumbs.db
 
-# Output directory
-Output
+temporary
+
+# VS directories
+bin
+obj
+
+# Working directory
+Working
 
 # Folder config file
 Desktop.ini

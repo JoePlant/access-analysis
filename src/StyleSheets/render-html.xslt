@@ -26,8 +26,9 @@
 	
 	<xsl:variable name='main-forms' select='/Database/Forms/Form[not(@subform)]'/>
 	<xsl:variable name='sub-forms' select='/Database/Forms/Form[@subform]'/>
+  <xsl:variable name='all-forms' select='$main-forms | $sub-forms'/>
 
-	<xsl:template match="/">
+  <xsl:template match="/">
 <html lang="en">
   <head>
     <meta charset="utf-8"/>
@@ -70,11 +71,33 @@
 				</a>
 				<ul class="dropdown-menu">
 					<xsl:for-each select='$main-forms'>
-						<xsl:sort select='@name'/>
-						<li><a href='#{@id}'><xsl:value-of select='@name'/></a></li>
+            <xsl:sort select='@name'/>
+            <xsl:variable name='form-id' select='generate-id(.)'/>
+            <li><a href='#{$form-id}'><xsl:value-of select='@name'/></a></li>
 					</xsl:for-each>
 				</ul>
 			  </li>
+        <li role="presentation" class="dropdown">
+              <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                <xsl:text>SubForms </xsl:text>
+                <xsl:call-template name='count-badge'>
+                  <xsl:with-param name='items' select='$sub-forms'/>
+                </xsl:call-template>
+                <xsl:text> </xsl:text>
+                <span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu">
+                <xsl:for-each select='$sub-forms'>
+                  <xsl:sort select='@name'/>
+                  <xsl:variable name='form-id' select='generate-id(.)'/>
+                  <li>
+                    <a href='#{$form-id}'>
+                      <xsl:value-of select='@name'/>
+                    </a>
+                  </li>
+                </xsl:for-each>
+              </ul>
+            </li>
             <li><a href="#reports">Relationships</a></li>
           </ul>
         </div><!--/.nav-collapse -->
@@ -91,7 +114,7 @@
 
       <a name='forms'/>
       <h3>Forms</h3>
-      <xsl:apply-templates select='$main-forms' mode='form'>
+      <xsl:apply-templates select='$all-forms' mode='form'>
         <xsl:sort select='@name'/>
       </xsl:apply-templates>
     </div>
