@@ -31,7 +31,7 @@
 
     <xsl:if test='$used-by'>
       <div>
-        <xsl:text>Parent form(s): </xsl:text>
+        <xsl:text>Parent reports(s): </xsl:text>
         <xsl:for-each select='$used-by'>
           <xsl:variable name='sform-id' select='generate-id(.)'/>
           <span class="button button-small">
@@ -44,7 +44,7 @@
     </xsl:if>
 
     <div>
-      <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#h_{$report-id}" >Show form</button>
+      <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#h_{$report-id}" >Show Report</button>
       <div class="collapse" id="h_{$report-id}">
         <xsl:apply-templates select='.' mode='render-report'/>
       </div>

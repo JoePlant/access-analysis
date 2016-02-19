@@ -11,7 +11,10 @@
 		<xsl:variable name='controls' select='Sections/Section/Controls/descendant::*'/>
 		<xsl:variable name='events' select='Events/Code'/>
     <xsl:variable name='form-id' select='generate-id(.)'/>
-    <xsl:variable name='used-by' select="key('subforms-by-source-object', @name)/ancestor::Form"/>
+    <xsl:variable name='sforms' select="key('subforms-by-source-object', @name)|key('subforms-by-source-object', concat('Form.', @name))"/>
+    <xsl:variable name='used-by-form' select="$sforms/ancestor::Form"/>
+    <xsl:variable name='used-by-report' select="$sforms/ancestor::Report"/>
+    <xsl:variable name="used-by" select="$used-by-form | $used-by-report"/>
     <hr/>
 		<a name='{$form-id}'/>
     <h4>
@@ -32,12 +35,16 @@
 
     <xsl:if test='$used-by'>
       <div>
-        <xsl:text>Parent form(s): </xsl:text>
+        <xsl:text>Parent (s): </xsl:text>
         <xsl:for-each select='$used-by'>
           <xsl:variable name='sform-id' select='generate-id(.)'/>
           <span class="button button-small">
             <a href='#{$sform-id}'>
               <xsl:value-of select='@name'/>
+              <xsl:text> </xsl:text>
+              <span class="label label-default">
+                <xsl:value-of select="name()"/>
+              </span>
             </a>
           </span>
         </xsl:for-each>

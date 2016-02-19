@@ -25,7 +25,7 @@
 	</xsl:template>
 		
 	<xsl:template match="Form">
-		<xsl:variable name='sub-forms' select='key("subforms-by-name", @name)' />
+		<xsl:variable name='sub-forms' select='key("subforms-by-name", @name) | key("subforms-by-name", concat("Form.", @name))' />
 		<xsl:variable name='height' select='(Properties/Property[@name="WindowHeight"]) div $twips-per-pixel'/>
 		<xsl:variable name='width' select='(Properties/Property[@name="WindowWidth"]) div $twips-per-pixel'/>
     <xsl:variable name='default-view'>

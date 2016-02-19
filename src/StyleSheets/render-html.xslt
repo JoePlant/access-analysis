@@ -138,24 +138,31 @@
     <br/>
 
 	<nav class="navbar navbar-default navbar-fixed-bottom">
-      <div class="container">
-        <div class="navbar-header">
-          <a class="navbar-brand" href="#"><xsl:value-of select='$db-name'/></a>
-        </div>
-        <div class="collapse navbar-collapse">
-          <ul class="nav navbar-nav">
-            <li>
-				<a href="#forms">
-					<xsl:text>Forms </xsl:text>
-					<xsl:call-template name='count-badge'>
-						<xsl:with-param name='items' select='$main-forms'/>
-					</xsl:call-template>
-				</a>
-			</li>
-            <li><a href="#reports"><xsl:text>Reports </xsl:text><xsl:apply-templates select='/Database/Reports' mode='count-badge'/></a></li>
-          </ul>
-        </div>
+    <div class="container">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="#">
+          <xsl:value-of select='$db-name'/>
+        </a>
       </div>
+      <div class="collapse navbar-collapse">
+        <ul class="nav navbar-nav">
+          <li>
+            <a href="#forms">
+              <xsl:text>Forms </xsl:text>
+              <xsl:call-template name='count-badge'>
+                <xsl:with-param name='items' select='$main-forms'/>
+              </xsl:call-template>
+            </a>
+          </li>
+          <li>
+            <a href="#reports">
+              <xsl:text>Reports </xsl:text>
+              <xsl:apply-templates select='/Database/Reports' mode='count-badge'/>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
 	</nav>
 	
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->

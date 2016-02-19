@@ -183,10 +183,22 @@
 	</xsl:template>
 
 	<xsl:template match='SubForm' mode='render-control'>
-		<xsl:variable name='source' select='@sourceObject'/>
+    <xsl:variable name='source'>
+      <xsl:choose>
+        <xsl:when test="starts-with(@sourceObject, 'Form.')">
+          <xsl:value-of select="substring-after(@sourceObject, 'Form.')"/>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:value-of select="@sourceObject"/>
+        </xsl:otherwise>
+      </xsl:choose>
+    </xsl:variable> 
+    
 		<xsl:variable name='subform' select='$sub-forms[@name=$source]'/>
 		<div title="SubForm ({@name}) Form={@sourceObject}" class='control-subform' style="top:{@top}px; left:{@left}px; width:{@width}px; height:{@height}px;">
 			<xsl:value-of select='@name'/>
+      <xsl:comment>SubForm: <xsl:value-of select='$subform/@name'/>
+    </xsl:comment>
 			<xsl:apply-templates select='$subform' mode='render-form'/>
 		</div>
 		<xsl:apply-templates mode='render-control'/>
