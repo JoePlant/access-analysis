@@ -1,9 +1,9 @@
 rem @echo off
 set database=database.xml
-set dir=..\temporary\xml
-set output=..\temporary\output
-rem set dir=..\example\northwind\xml
-rem set output=..\example\northwind\output
+rem set dir=..\temporary\xml
+rem set output=..\temporary\output
+set dir=..\example\northwind\xml
+set output=..\example\northwind\output
 
 
 if EXIST Working goto Working_exists
