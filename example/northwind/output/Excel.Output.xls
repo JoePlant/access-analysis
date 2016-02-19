@@ -1,0 +1,1911 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?mso-application progid="Excel.Sheet"?>
+<Workbook xmlns:fo="http://www.w3.org/1999/XSL/Format" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:fn="http://www.w3.org/2005/xpath-functions" xmlns:xdt="http://www.w3.org/2005/xpath-datatypes" xmlns="urn:schemas-microsoft-com:office:spreadsheet" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet" xmlns:html="http://www.w3.org/TR/REC-html40">
+  <Styles>
+    <Style ss:ID="header" ss:Name="Header">
+      <Font ss:FontName="Arial" ss:Bold="1" />
+    </Style>
+    <Style ss:ID="text" ss:Name="Normal">
+      <Font ss:FontName="Arial" />
+    </Style>
+    <Style ss:ID="value" ss:Parent="text" ss:Name="Value">
+      <Font ss:Bold="1" />
+    </Style>
+    <Style ss:ID="hyperlink" ss:Parent="text" ss:Name="Hyperlink">
+      <Font ss:Underline="Single" ss:Color="#0000FF" />
+    </Style>
+    <Style ss:ID="inherited-value" ss:Parent="text" ss:Name="Inherited Value">
+      <Font ss:Italic="1" />
+    </Style>
+    <Style ss:ID="default-value" ss:Parent="text" ss:Name="Default Value">
+      <Font ss:Italic="1" ss:Color="Silver" />
+    </Style>
+    <Style ss:ID="no-value" ss:Parent="text" ss:Name="No Value">
+      <Interior ss:Pattern="Solid" ss:Color="Silver" />
+    </Style>
+    <Style ss:ID="merge-down" ss:Parent="text" ss:Name="Merged Down">
+      <Alignment ss:Horizontal="Left" ss:Vertical="Center" />
+    </Style>
+  </Styles>
+  <Worksheet ss:Name="Forms">
+    <Table>
+      <Row>
+        <Cell ss:StyleID="header">
+          <Data ss:Type="String">Form</Data>
+        </Cell>
+        <Cell ss:StyleID="header">
+          <Data ss:Type="String">Type</Data>
+        </Cell>
+        <Cell ss:StyleID="header">
+          <Data ss:Type="String">Controls</Data>
+        </Cell>
+        <Cell ss:StyleID="header">
+          <Data ss:Type="String">SubForms</Data>
+        </Cell>
+        <Cell ss:StyleID="header">
+          <Data ss:Type="String">Used by Form</Data>
+        </Cell>
+        <Cell ss:StyleID="header">
+          <Data ss:Type="String">DataSource</Data>
+        </Cell>
+        <Cell ss:StyleID="header">
+          <Data ss:Type="String">Parameters</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Active Orders Subform for Home</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Datasheet (SubForm)</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="Number">5</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Home</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">SELECT Orders.[Order ID], Orders.[Employee ID], Orders.[Customer ID], Orders.[Order Date], Orders.Taxes, [Order Price Totals].[Price Total], Customers.Company, Orders.[Status ID] FROM Customers INNER JOIN (Orders INNER JOIN [Order Price Totals] ON Orders.[Order ID]=[Order Price Totals].OrderID) ON Customers.ID=Orders.[Customer ID] WHERE ((Not (Orders.[Status ID])=3)) ORDER BY Orders.[Order Date] DESC; </Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">
+        </Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Home</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">SingleForm</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="Number">26</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Active Orders Subform for Home, Inventory to reorder Subform for Home, Sales Analysis Subform for Home Chart</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Strings</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">
+        </Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Inventory to reorder Subform for Home</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Datasheet (SubForm)</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="Number">3</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Home</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">SELECT Inventory.* FROM Inventory WHERE (((Inventory.[Current Level])&lt;[Reorder Level])); </Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">
+        </Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Login Dialog</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">SingleForm</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="Number">5</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+        </Cell>
+        <Cell ss:StyleID="text">
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">
+        </Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">
+        </Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Sales Reports Dialog</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">SingleForm</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="Number">13</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+        </Cell>
+        <Cell ss:StyleID="text">
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">
+        </Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">
+        </Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Startup Screen</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">SingleForm</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="Number">4</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+        </Cell>
+        <Cell ss:StyleID="text">
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">
+        </Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">
+        </Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Product Details</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">SingleForm</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="Number">9</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Product Transactions Subform for Product Details</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Products</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">
+        </Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Product Transactions Subform for Product Details</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Datasheet (SubForm)</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="Number">5</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Product Details</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Product Transactions</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">
+        </Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Supplier List</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">SplitForm</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="Number">28</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+        </Cell>
+        <Cell ss:StyleID="text">
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Suppliers Extended</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">
+        </Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Purchase Order List</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">SplitForm</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="Number">13</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+        </Cell>
+        <Cell ss:StyleID="text">
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Purchase Summary</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">
+        </Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Customer Details</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">SingleForm</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="Number">14</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Customer Orders Subform</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Customers Extended</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">
+        </Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Order Details</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">SingleForm</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="Number">21</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Order Subform for Order Details</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">SELECT Orders.*, [Orders Status].[Status Name], [Customers Extended].[E-mail Address] FROM [Customers Extended] INNER JOIN ([Orders Status] INNER JOIN Orders ON [Orders Status].[Status ID]=Orders.[Status ID]) ON [Customers Extended].ID=Orders.[Customer ID]; </Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">
+        </Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Order Subform for Order Details</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Datasheet (SubForm)</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="Number">6</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Order Details</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Order Details Extended</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">
+        </Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Purchase Order Details</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">SingleForm</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="Number">23</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Purchases Subform for Purchase Order Details, Receiving Subform for Purchase Order Details</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">SELECT [Purchase Orders].*, [Purchase Order Status].Status FROM [Purchase Order Status] RIGHT JOIN [Purchase Orders] ON [Purchase Order Status].[Status ID]=[Purchase Orders].[Status ID]; </Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">
+        </Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Purchases Subform for Purchase Order Details</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Datasheet (SubForm)</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="Number">6</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Purchase Order Details</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Purchase Details Extended</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">
+        </Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Receiving Subform for Purchase Order Details</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Datasheet (SubForm)</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="Number">4</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Purchase Order Details</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Purchase Details Extended</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">
+        </Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Shipper Details</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">SingleForm</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="Number">14</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+        </Cell>
+        <Cell ss:StyleID="text">
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Shippers Extended</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">
+        </Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Customer List</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">SplitForm</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="Number">28</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+        </Cell>
+        <Cell ss:StyleID="text">
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Customers Extended</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">
+        </Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Product Sales by Category Chart</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">PivotChart</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="Number">4</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+        </Cell>
+        <Cell ss:StyleID="text">
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Product Sales by Category</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">
+        </Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Shipper List</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">SplitForm</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="Number">28</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+        </Cell>
+        <Cell ss:StyleID="text">
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Shippers Extended</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">
+        </Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Inventory List</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">ContinuousForm</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="Number">22</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+        </Cell>
+        <Cell ss:StyleID="text">
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Inventory</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">
+        </Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Order List</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">SplitForm</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="Number">17</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+        </Cell>
+        <Cell ss:StyleID="text">
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Order Summary</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">
+        </Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Product Category Sales by Month</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">PivotChart</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="Number">3</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+        </Cell>
+        <Cell ss:StyleID="text">
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Product Category Sales by Date</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">
+        </Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Sales Analysis Form</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">SingleForm</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="Number">5</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+        </Cell>
+        <Cell ss:StyleID="text">
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Sales Analysis</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">
+        </Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Customer Orders Subform</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Datasheet (SubForm)</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="Number">10</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Customer Details</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Order Summary</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">
+        </Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Employee Orders Subform</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Datasheet (SubForm)</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="Number">11</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Employee Details</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Order Summary</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">
+        </Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Supplier Products Subform</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Datasheet (SubForm)</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="Number">6</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Supplier Details</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Products</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">
+        </Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Supplier Purchases Subform</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Datasheet (SubForm)</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="Number">6</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Supplier Details</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Purchase Orders</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">
+        </Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Employee Details</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">SingleForm</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="Number">14</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Employee Orders Subform</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Employees Extended</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">
+        </Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Employee List</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">SplitForm</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="Number">31</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+        </Cell>
+        <Cell ss:StyleID="text">
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Employees Extended</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">
+        </Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Sales Analysis Subform for Home Chart</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">PivotChart (SubForm)</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="Number">6</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Home</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">SELECT DISTINCTROW Employees.[Country/Region], Employees.[Last Name], Employees.[First Name], Orders.[Shipped Date], Orders.[Order ID], [Order Subtotals].Subtotal AS [Sale Amount] FROM Employees INNER JOIN (Orders INNER JOIN [Order Subtotals] ON Orders.[Order ID]=[Order Subtotals].[Order ID]) ON Employees.ID=Orders.[Employee ID] WHERE (((Year([Shipped Date]))=Year(Date())) AND ((DatePart("q",[Shipped Date]))=DatePart("q",Date()))); </Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">
+        </Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Supplier Details</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">SingleForm</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="Number">14</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Supplier Products Subform, Supplier Purchases Subform</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Suppliers Extended</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">
+        </Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Product Sales by Total Revenue Chart</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">PivotChart</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="Number">3</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+        </Cell>
+        <Cell ss:StyleID="text">
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Product Sales Total by Date</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">
+        </Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Product Sales Qty by Employee Chart</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">PivotChart</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="Number">4</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+        </Cell>
+        <Cell ss:StyleID="text">
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Product Sales Qty by Employee and Date</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">
+        </Data>
+        </Cell>
+      </Row>
+    </Table>
+  </Worksheet>
+  <Worksheet ss:Name="Form Code">
+    <Table>
+      <Row>
+        <Cell ss:StyleID="header">
+          <Data ss:Type="String">Form</Data>
+        </Cell>
+        <Cell ss:StyleID="header">
+          <Data ss:Type="String">Object</Data>
+        </Cell>
+        <Cell ss:StyleID="header">
+          <Data ss:Type="String">Object name</Data>
+        </Cell>
+        <Cell ss:StyleID="header">
+          <Data ss:Type="String">Code</Data>
+        </Cell>
+        <Cell ss:StyleID="header">
+          <Data ss:Type="String">Code name</Data>
+        </Cell>
+        <Cell ss:StyleID="header">
+          <Data ss:Type="String">Code details</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Sales Reports Dialog</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Form</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Form</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">OnLoad</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Form_Load</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">[Event Procedure]</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Sales Reports Dialog</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">ListBox</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">lstSalesReports</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">AfterUpdate</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">lstSalesReports_AfterUpdate</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">[Event Procedure]</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Sales Reports Dialog</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">ListBox</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">lstSalesPeriod</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">AfterUpdate</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">lstSalesPeriod_AfterUpdate</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">[Event Procedure]</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Sales Reports Dialog</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Button</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">cmdPrint</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">OnClick</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">cmdPrint_Click</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">[Event Procedure]</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Sales Reports Dialog</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Button</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">cmdPreview</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">OnClick</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">cmdPreview_Click</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">[Event Procedure]</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Order Details</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Form</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Form</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">OnCurrent</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Form_Current</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">[Event Procedure]</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Order Details</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Form</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Form</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">OnLoad</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Form_Load</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">[Event Procedure]</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Order Details</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Button</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">cmdClearAddress</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">OnClick</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">cmdClearAddress_Click</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">[Event Procedure]</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Order Details</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">ComboBox</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Customer ID</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">AfterUpdate</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Customer_ID_AfterUpdate</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">[Event Procedure]</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Order Details</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Button</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">cmdShipOrder</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">OnClick</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">cmdShipOrder_Click</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">[Event Procedure]</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Order Details</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Button</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">cmdCreateInvoice</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">OnClick</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">cmdCreateInvoice_Click</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">[Event Procedure]</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Order Details</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Button</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">cmdDeleteOrder</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">OnClick</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">cmdDeleteOrder_Click</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">[Event Procedure]</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Order Details</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Button</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">cmdCompleteOrder</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">OnClick</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">cmdCompleteOrder_Click</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">[Event Procedure]</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Order Subform for Order Details</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Form</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Form</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">OnCurrent</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Form_Current</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">[Event Procedure]</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Order Subform for Order Details</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">ComboBox</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Product ID</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">AfterUpdate</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Product_ID_AfterUpdate</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">[Event Procedure]</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Order Subform for Order Details</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">TextBox</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Quantity</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">AfterUpdate</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Quantity_AfterUpdate</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">[Event Procedure]</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Order Subform for Order Details</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">TextBox</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Status Name</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">OnDblClick</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Status_Name_DblClick</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">[Event Procedure]</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Purchase Order Details</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Form</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Form</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">OnCurrent</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Form_Current</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">[Event Procedure]</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Purchase Order Details</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">ComboBox</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Supplier ID</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">BeforeUpdate</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Supplier_ID_BeforeUpdate</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">[Event Procedure]</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Purchase Order Details</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">ComboBox</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Supplier ID</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">AfterUpdate</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Supplier_ID_AfterUpdate</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">[Event Procedure]</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Purchase Order Details</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">TabControl</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">TabCtlPurchasing</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">OnChange</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">TabCtlPurchasing_Change</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">[Event Procedure]</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Purchase Order Details</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Button</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">cmdSubmitforApproval</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">OnClick</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">cmdSubmitforApproval_Click</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">[Event Procedure]</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Purchase Order Details</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Button</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">cmdApprovePurchase</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">OnClick</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">cmdApprovePurchase_Click</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">[Event Procedure]</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Purchase Order Details</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Button</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">cmdCancelPurchase</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">OnClick</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">cmdCancelPurchase_Click</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">[Event Procedure]</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Purchase Order Details</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Button</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">cmdClose</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">OnClick</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">cmdClose_Click</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">[Event Procedure]</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Purchases Subform for Purchase Order Details</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Form</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Form</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">BeforeUpdate</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Form_BeforeUpdate</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">[Event Procedure]</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Purchases Subform for Purchase Order Details</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Form</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Form</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">AfterInsert</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Form_AfterInsert</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">[Event Procedure]</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Purchases Subform for Purchase Order Details</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">TextBox</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Quantity</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">BeforeUpdate</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Quantity_BeforeUpdate</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">[Event Procedure]</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Purchases Subform for Purchase Order Details</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">TextBox</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Quantity</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">AfterUpdate</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Quantity_AfterUpdate</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">[Event Procedure]</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Purchases Subform for Purchase Order Details</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">TextBox</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Unit Cost</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">BeforeUpdate</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Unit_Cost_BeforeUpdate</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">[Event Procedure]</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Purchases Subform for Purchase Order Details</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">ComboBox</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Product ID</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">AfterUpdate</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Product_ID_AfterUpdate</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">[Event Procedure]</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Receiving Subform for Purchase Order Details</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Form</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Form</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">OnCurrent</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Form_Current</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">[Event Procedure]</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Receiving Subform for Purchase Order Details</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Form</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Form</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">OnLoad</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Form_Load</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">[Event Procedure]</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Receiving Subform for Purchase Order Details</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">TextBox</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Date Received</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">AfterUpdate</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Date_Received_AfterUpdate</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">[Event Procedure]</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Receiving Subform for Purchase Order Details</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">CheckBox</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Posted To Inventory</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">AfterUpdate</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Posted_To_Inventory_AfterUpdate</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">[Event Procedure]</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Inventory List</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Button</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">cmdPurchase</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">OnClick</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">cmdPurchase_Click</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">[Event Procedure]</Data>
+        </Cell>
+      </Row>
+    </Table>
+  </Worksheet>
+  <Worksheet ss:Name="Reports">
+    <Table>
+      <Row>
+        <Cell ss:StyleID="header">
+          <Data ss:Type="String">Report</Data>
+        </Cell>
+        <Cell ss:StyleID="header">
+          <Data ss:Type="String">Type</Data>
+        </Cell>
+        <Cell ss:StyleID="header">
+          <Data ss:Type="String">Controls</Data>
+        </Cell>
+        <Cell ss:StyleID="header">
+          <Data ss:Type="String">DataSource</Data>
+        </Cell>
+        <Cell ss:StyleID="header">
+          <Data ss:Type="String">Parameters</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Customer Phone Book</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Report</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="Number">9</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Customers Extended</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+        </Cell>
+      </Row>
+      <Row>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Supplier Phone Book</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Report</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="Number">9</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Suppliers Extended</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+        </Cell>
+      </Row>
+      <Row>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Employee Phone Book</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Report</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="Number">9</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Employees Extended</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+        </Cell>
+      </Row>
+      <Row>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Monthly Sales Report</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Report</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="Number">5</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Sales Analysis</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+        </Cell>
+      </Row>
+      <Row>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Yearly Sales Report</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Report</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="Number">16</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Sales Analysis</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+        </Cell>
+      </Row>
+      <Row>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Invoice</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Report</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="Number">24</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Invoice Data</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+        </Cell>
+      </Row>
+      <Row>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Product Sales Quantity by Employee</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Report</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="Number">3</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+        </Cell>
+        <Cell ss:StyleID="text">
+        </Cell>
+      </Row>
+      <Row>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Top Ten Biggest Orders</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Report</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="Number">7</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Top Ten Orders by Sales Amount</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+        </Cell>
+      </Row>
+      <Row>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Customer Address Book</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Report</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="Number">11</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Customers Extended</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+        </Cell>
+      </Row>
+      <Row>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Employee Address Book</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Report</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="Number">11</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Employees Extended</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+        </Cell>
+      </Row>
+      <Row>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Supplier Address Book</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Report</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="Number">11</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Suppliers Extended</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+        </Cell>
+      </Row>
+      <Row>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Product Category Sales by Month</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Report</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="Number">3</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+        </Cell>
+        <Cell ss:StyleID="text">
+        </Cell>
+      </Row>
+      <Row>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Product Sales by Category</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Report</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="Number">3</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+        </Cell>
+        <Cell ss:StyleID="text">
+        </Cell>
+      </Row>
+      <Row>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Product Sales by Total Revenue</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Report</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="Number">3</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+        </Cell>
+        <Cell ss:StyleID="text">
+        </Cell>
+      </Row>
+      <Row>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Quarterly Sales Report</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Report</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="Number">14</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Sales Analysis</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+        </Cell>
+      </Row>
+    </Table>
+  </Worksheet>
+  <Worksheet ss:Name="Report Code">
+    <Table>
+      <Row>
+        <Cell ss:StyleID="header">
+          <Data ss:Type="String">Report</Data>
+        </Cell>
+        <Cell ss:StyleID="header">
+          <Data ss:Type="String">Object</Data>
+        </Cell>
+        <Cell ss:StyleID="header">
+          <Data ss:Type="String">Object name</Data>
+        </Cell>
+        <Cell ss:StyleID="header">
+          <Data ss:Type="String">Code</Data>
+        </Cell>
+        <Cell ss:StyleID="header">
+          <Data ss:Type="String">Code name</Data>
+        </Cell>
+        <Cell ss:StyleID="header">
+          <Data ss:Type="String">Code details</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Monthly Sales Report</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Report</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Report</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">OnOpen</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Report_Open</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">[Event Procedure]</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Yearly Sales Report</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Report</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Report</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">OnOpen</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Report_Open</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">[Event Procedure]</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Quarterly Sales Report</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Report</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Report</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">OnOpen</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">Report_Open</Data>
+        </Cell>
+        <Cell ss:StyleID="text">
+          <Data ss:Type="String">[Event Procedure]</Data>
+        </Cell>
+      </Row>
+    </Table>
+  </Worksheet>
+</Workbook>

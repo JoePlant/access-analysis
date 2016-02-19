@@ -37,6 +37,7 @@
 	background-color: #FFFFFF;
 	border-style: dotted;
 	border-width: 2px;
+    overflow: scroll;
 }
 
 .control-image
