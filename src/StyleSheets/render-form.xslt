@@ -43,46 +43,55 @@
         </xsl:for-each>
       </div>
     </xsl:if>
-		
-		<div>
+
+    <div>
       <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#h_{$form-id}" >Show form</button>
       <div class="collapse" id="h_{$form-id}">
         <xsl:apply-templates select='.' mode='render-form'/>
       </div>
+      <!--
       <button class="btn btn-default" type="button" data-toggle="collapse" data-target="#ctrl_{$form-id}" >Show controls</button>
       <div class="collapse" id="ctrl_{$form-id}">
         <table class='table table-bordered table-condensed table-hover'>
           <xsl:apply-templates select='Sections/Section/Controls/*' mode='control-table' />
         </table>
       </div>
-      <button class="btn btn-default" type="button" data-toggle="collapse" data-target="#code_{$form-id}" >Show code</button>
-      <div class="collapse" id="code_{$form-id}">
-        <xsl:variable name="code" select="descendant::Code"/>
-        <xsl:if test="$code">
-          <table>
-            <xsl:if test="Events/Code">
+      -->
+      <xsl:if test='Module'>
+
+        <button class="btn btn-default" type="button" data-toggle="collapse" data-target="#code_{$form-id}" >Show code</button>
+        <div class="collapse" id="code_{$form-id}">
+          <xsl:variable name="code" select="descendant::Code"/>
+          <xsl:if test="$code">
+            <table>
+              <xsl:if test="Events/Code">
+                <tr>
+                  <th>Form</th>
+                  <td>
+                    <xsl:apply-templates mode="code-button" select="Events/Code"/>
+                  </td>
+                </tr>
+              </xsl:if>
+            </table>
+          </xsl:if>
+          <table class='table table-bordered table-condensed table-hover'>
+            <xsl:for-each select='Events/Code'>
               <tr>
-                <th>Form</th>
+                <th>
+                  <xsl:apply-templates mode="code-button" select="."/>
+                </th>
+              </tr>
+              <tr>
                 <td>
-                  <xsl:apply-templates mode="code-button" select="Events/Code"/>
+                  <code>...</code>
                 </td>
               </tr>
-            </xsl:if>
+            </xsl:for-each>
           </table>
-        </xsl:if>
-        <table class='table table-bordered table-condensed table-hover'>
-          <xsl:for-each select='Events/Code'>
-            <tr>
-              <th><xsl:value-of select='@name'/></th>
-            </tr>
-            <tr>
-              <td><code>...</code></td>
-            </tr>
-          </xsl:for-each>
-        </table>
-        <xsl:apply-templates select='Module' mode='code'/>
-      </div>
-		</div>
+          <xsl:apply-templates select='Module' mode='code'/>
+        </div>
+      </xsl:if>
+    </div>
 		
 	</xsl:template>
 
