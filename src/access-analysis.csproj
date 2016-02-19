@@ -22,7 +22,7 @@
     <Content Include="StyleSheets\consolidate.xslt">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="StyleSheets\excel-form.xslt">
+    <Content Include="StyleSheets\excel-output.xslt">
       <SubType>Designer</SubType>
     </Content>
     <Content Include="StyleSheets\excel-common.xslt">
