@@ -25,7 +25,7 @@
 	</xsl:template>
 		
 	<xsl:template match="Form">
-		<xsl:variable name='sub-forms' select='key("subforms-by-name", @name)' />
+		<xsl:variable name='sub-forms' select='key("subforms-by-name", @name) | key("subforms-by-name", concat("Form.", @name))' />
 		<xsl:variable name='height' select='(Properties/Property[@name="WindowHeight"]) div $twips-per-pixel'/>
 		<xsl:variable name='width' select='(Properties/Property[@name="WindowWidth"]) div $twips-per-pixel'/>
     <xsl:variable name='default-view'>
@@ -143,42 +143,29 @@
 
   <xsl:template match="Report">
 		<Report name='{@name}' id='{@id}'>
-			<Events>
-				<xsl:apply-templates select='Properties/Property[@method]' mode='code'/>
-			</Events>
-			<RecordSource type='report'> 
-				<DataSource>
-					<xsl:value-of select="Properties/Property[@name='RecordSource']"/>
-				</DataSource>
-				<Parameters>
-					<xsl:value-of select="Properties/Property[@name='InputParameters']"/>
-				</Parameters>
-				<Controls>
-					<xsl:variable name='vba' select='Section/Controls/Control[VBA]'/>
-					<xsl:variable name='source' select='Section/Controls/Control[Properties/Property[@name="ControlSource"]]'/>
-					<xsl:variable name='master' select='Section/Controls/Control[Properties/Property[@name="LinkMasterFields"]]'/>
-					<xsl:variable name='events' select='Section/Controls/Control[Properties/Property[@method]]'/>
-					<xsl:variable name='all' select='$vba | $source | $events | $master' />
-					<xsl:for-each select='$all'>
-						<xsl:variable name='current' select='@name'/>
-						<xsl:choose>
-							<!-- already referenced as a reference-->
-							<xsl:when test='count($all[Controls/ControlRef[@name=$current]]) > 0'/>
-							<xsl:otherwise>
-								<xsl:apply-templates select='.'>
-									<!-- <xsl:with-param name='controls' select='$all'/> -->
-								</xsl:apply-templates>
-							</xsl:otherwise>
-						</xsl:choose>
-					</xsl:for-each>
-				</Controls>
-			</RecordSource>
-			<References>
-				<xsl:call-template name='search-vba'>	
-					<xsl:with-param name='text' select='concat($quote, @name, $quote)'/>
-					<xsl:with-param name='operation'>OpenReport</xsl:with-param>
-				</xsl:call-template>
-			</References>
+      <Events>
+        <xsl:apply-templates select='Properties/Property[@method]' mode='code'/>
+      </Events>
+      <RecordSource type='form'>
+        <DataSource>
+          <xsl:apply-templates select="Properties/Property[@name='RecordSource']"/>
+        </DataSource>
+        <Parameters>
+          <xsl:apply-templates select="Properties/Property[@name='InputParameters']"/>
+        </Parameters>
+      </RecordSource>
+      <Sections>
+        <xsl:apply-templates select='Section' />
+      </Sections>
+
+      <xsl:apply-templates select='Module' />
+
+      <References>
+        <xsl:call-template name='search-vba'>
+          <xsl:with-param name='text' select='concat("DoCmd.OpenReport ", $quote, @name, $quote)'/>
+          <xsl:with-param name='operation'>OpenReport</xsl:with-param>
+        </xsl:call-template>
+      </References>
 		</Report>
 	</xsl:template>
 
@@ -221,8 +208,9 @@
 				<xsl:when test='@type-name="Combo box"'>ComboBox</xsl:when>
 				<xsl:when test='@type-name="Check box"'>CheckBox</xsl:when>
 				<xsl:when test='@type-name="List box"'>ListBox</xsl:when>
-				<xsl:when test='@type-name="Tab Control"'>TabControl</xsl:when>
-				<xsl:when test='@type-name="ActiveX (custom) control"'>ActiveXCustomControl</xsl:when>
+        <xsl:when test='@type-name="Tab Control"'>TabControl</xsl:when>
+        <xsl:when test='@type-name="Empty Cell"'>EmptyCell</xsl:when>
+        <xsl:when test='@type-name="ActiveX (custom) control"'>ActiveXCustomControl</xsl:when>
 				<xsl:otherwise>
 					<xsl:value-of select='@type-name'/>
 				</xsl:otherwise>

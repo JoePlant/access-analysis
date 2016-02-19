@@ -10,15 +10,11 @@
      indent="yes" />
 
 	<xsl:include href='render-summary.xslt' />
-	<xsl:include href='render-form.xslt' />
+  <xsl:include href='render-controls.xslt' />
+  <xsl:include href='render-form.xslt' />
+  <xsl:include href='render-report.xslt' />
+  <xsl:include href='render-module.xslt'/>
 
-	 <!--
-	<xsl:include href='render-form.xslt' />
-
-	<xsl:include href='render-tables.xslt' /> 
-	<xsl:include href='render-tables.xslt'/>
-	<xsl:include href='render-columns.xslt'/>
--->	
 	<xsl:variable name='crlf'>
 </xsl:variable>
 
@@ -111,6 +107,19 @@
       <xsl:apply-templates select='$all-forms' mode='form'>
         <xsl:sort select='@name'/>
       </xsl:apply-templates>
+
+      <a name='reports'/>
+      <h3>Reports</h3>
+      <xsl:apply-templates select='$reports' mode='report'>
+        <xsl:sort select='@name'/>
+      </xsl:apply-templates>
+
+      <a name='modules'/>
+      <h3>Modules</h3>
+      <xsl:apply-templates select='$modules' mode='module'>
+        <xsl:sort select='@name'/>
+      </xsl:apply-templates>
+
     </div>
 
   </div>
@@ -129,24 +138,31 @@
     <br/>
 
 	<nav class="navbar navbar-default navbar-fixed-bottom">
-      <div class="container">
-        <div class="navbar-header">
-          <a class="navbar-brand" href="#"><xsl:value-of select='$db-name'/></a>
-        </div>
-        <div class="collapse navbar-collapse">
-          <ul class="nav navbar-nav">
-            <li>
-				<a href="#forms">
-					<xsl:text>Forms </xsl:text>
-					<xsl:call-template name='count-badge'>
-						<xsl:with-param name='items' select='$main-forms'/>
-					</xsl:call-template>
-				</a>
-			</li>
-            <li><a href="#reports"><xsl:text>Reports </xsl:text><xsl:apply-templates select='/Database/Reports' mode='count-badge'/></a></li>
-          </ul>
-        </div>
+    <div class="container">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="#">
+          <xsl:value-of select='$db-name'/>
+        </a>
       </div>
+      <div class="collapse navbar-collapse">
+        <ul class="nav navbar-nav">
+          <li>
+            <a href="#forms">
+              <xsl:text>Forms </xsl:text>
+              <xsl:call-template name='count-badge'>
+                <xsl:with-param name='items' select='$main-forms'/>
+              </xsl:call-template>
+            </a>
+          </li>
+          <li>
+            <a href="#reports">
+              <xsl:text>Reports </xsl:text>
+              <xsl:apply-templates select='/Database/Reports' mode='count-badge'/>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
 	</nav>
 	
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->

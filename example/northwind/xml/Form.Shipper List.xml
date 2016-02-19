@@ -158,7 +158,7 @@
     <Property name='HorizontalDatasheetGridlineStyle' type='Integer' >1</Property>
     <Property name='VerticalDatasheetGridlineStyle' type='Integer' >1</Property>
     <Property name='DatasheetColumnHeaderUnderlineStyle' type='Integer' >1</Property>
-    <Property name='Hwnd' type='Long' >4989084</Property>
+    <Property name='Hwnd' type='Long' >17500782</Property>
     <Property name='Count' type='Integer' >44</Property>
     <Property name='LogicalPageWidth' type='Long' >12960</Property>
     <Property name='Visible' type='Boolean' >True</Property>
@@ -166,7 +166,7 @@
     <Property name='FrozenColumns' type='Integer' >1</Property>
     <Property name='Name' type='String' >Shipper List</Property>
     <Property name='OpenArgs' type='String' ></Property>
-    <Property name='WindowWidth' type='Integer' >11730</Property>
+    <Property name='WindowWidth' type='Integer' >17265</Property>
     <Property name='WindowHeight' type='Integer' >8175</Property>
     <Property name='CurrentView' type='Integer' >0</Property>
     <Property name='CurrentSectionTop' type='Integer' ></Property>
@@ -176,7 +176,7 @@
     <Property name='SelWidth' type='Long' ></Property>
     <Property name='SelHeight' type='Long' ></Property>
     <Property name='InsideHeight' type='Long' >7920</Property>
-    <Property name='InsideWidth' type='Long' >11475</Property>
+    <Property name='InsideWidth' type='Long' >17010</Property>
     <Property name='AllowDesignChanges' type='Boolean' >True</Property>
     <Property name='WindowTop' type='Integer' >0</Property>
     <Property name='WindowLeft' type='Integer' >0</Property>

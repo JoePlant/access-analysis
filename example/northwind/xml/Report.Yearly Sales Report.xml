@@ -95,14 +95,14 @@
     <Property name='AlternateBackThemeColorIndex' type='Long' >-1</Property>
     <Property name='AlternateBackTint' type='Single' >100</Property>
     <Property name='AlternateBackShade' type='Single' >100</Property>
-    <Property name='Hwnd' type='Long' >10029314</Property>
+    <Property name='Hwnd' type='Long' >18745966</Property>
     <Property name='Count' type='Integer' >23</Property>
     <Property name='LogicalPageWidth' type='Long' >11520</Property>
     <Property name='Visible' type='Boolean' >True</Property>
     <Property name='Painting' type='Boolean' >True</Property>
     <Property name='Name' type='String' >Yearly Sales Report</Property>
     <Property name='OpenArgs' type='String' ></Property>
-    <Property name='WindowWidth' type='Integer' >11730</Property>
+    <Property name='WindowWidth' type='Integer' >17265</Property>
     <Property name='WindowHeight' type='Integer' >8175</Property>
     <Property name='CurrentView' type='Integer' >0</Property>
     <Property name='AllowDesignChanges' type='Boolean' >True</Property>
@@ -1984,7 +1984,7 @@
           <Property name='GridlineShade' type='Single' >100</Property>
         </Properties>
       </Control>
-      <Control name='EmptyCell83' type-id='127' type-name='127' left='30' width='3312' top='45' height='331' >
+      <Control name='EmptyCell83' type-id='127' type-name='Empty Cell' left='30' width='3312' top='45' height='331' >
         <Properties count='37' >
           <Property name='EventProcPrefix' type='String' >EmptyCell83</Property>
           <Property name='Name' type='String' >EmptyCell83</Property>
