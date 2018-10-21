@@ -208,9 +208,10 @@
 				<xsl:when test='@type-name="Combo box"'>ComboBox</xsl:when>
 				<xsl:when test='@type-name="Check box"'>CheckBox</xsl:when>
 				<xsl:when test='@type-name="List box"'>ListBox</xsl:when>
-        <xsl:when test='@type-name="Tab Control"'>TabControl</xsl:when>
-        <xsl:when test='@type-name="Empty Cell"'>EmptyCell</xsl:when>
-        <xsl:when test='@type-name="ActiveX (custom) control"'>ActiveXCustomControl</xsl:when>
+				<xsl:when test='@type-name="Tab Control"'>TabControl</xsl:when>
+				<xsl:when test='@type-name="Empty Cell"'>EmptyCell</xsl:when>
+				<xsl:when test='@type-name="ActiveX (custom) control"'>ActiveXCustomControl</xsl:when>
+				<xsl:when test='@type-name="Bound object frame"'>BoundObjectFrame</xsl:when>
 				<xsl:otherwise>
 					<xsl:value-of select='@type-name'/>
 				</xsl:otherwise>
