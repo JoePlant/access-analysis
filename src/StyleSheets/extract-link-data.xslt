@@ -212,6 +212,7 @@
 				<xsl:when test='@type-name="Empty Cell"'>EmptyCell</xsl:when>
 				<xsl:when test='@type-name="ActiveX (custom) control"'>ActiveXCustomControl</xsl:when>
 				<xsl:when test='@type-name="Bound object frame"'>BoundObjectFrame</xsl:when>
+				<xsl:when test='@type-name="Unbound object frame or chart"'>UnboundObjectFrameOrChart</xsl:when>
 				<xsl:otherwise>
 					<xsl:value-of select='@type-name'/>
 				</xsl:otherwise>
