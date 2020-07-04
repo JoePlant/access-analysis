@@ -15,6 +15,10 @@
 	</xsl:template>
 	-->
 	
+	<xsl:template match="Property[@name='LabelName']">
+		<xsl:comment>&lt;Property name=LabelName /&gt; removed </xsl:comment>
+	</xsl:template>
+	
 	<xsl:template match="Form[@fileName]">
 		<xsl:variable name='fileName' select='@fileName'/>
 		<xsl:variable name='contents' select='document($fileName)'/>
